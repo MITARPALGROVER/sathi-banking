@@ -124,5 +124,31 @@
     "receive": "Receive",
     "bills": "Bills",
     "history": "History"
+  },
+  "guide": {
+    "step0": {
+      "title": "Sathi mein Welcome",
+      "text": "Hi! Main aapki voice banking companion Sathi hoon. Chaliye, main aapko dikhati hoon ki is app ko kaise use karein!",
+      "speak": "Hi! Main aapki voice banking companion Sathi hoon. Chaliye, main aapko dikhati hoon ki is app ko kaise use karein!"
+    },
+    "step1": {
+      "title": "Aapka Bank Balance",
+      "text": "Yeh aapka balance card hai. Apna balance aur account number dekhne ya chipane ke liye eye button ko tap karein.",
+      "speak": "Yeh aapka balance card hai. Apna balance aur account number dekhne ya chipane ke liye eye button ko tap karein."
+    },
+    "step2": {
+      "title": "Sathi se Baat Karein",
+      "text": "Yeh Sathi mic button hai. Is par tap karein aur paise bhejne, balance dekhne ya bill bharne ke liye apni language mein bolein.",
+      "speak": "Yeh Sathi mic button hai. Is par tap karein aur paise bhejne, balance dekhne ya bill bharne ke liye apni language mein bolein."
+    },
+    "step3": {
+      "title": "Quick Actions",
+      "text": "Yahan se aap directly paise bhej sakte hain, QR code dikha sakte hain, bills bhar sakte hain ya history dekh sakte hain.",
+      "speak": "Yahan se aap directly paise bhej sakte hain, QR code dikha sakte hain, bills bhar sakte hain ya history dekh sakte hain."
+    },
+    "skip": "Skip",
+    "next": "Next",
+    "back": "Back",
+    "finish": "Finish"
   }
 }

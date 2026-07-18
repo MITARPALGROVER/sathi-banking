@@ -126,5 +126,31 @@
     "receive": "Receive",
     "bills": "Bills",
     "history": "History"
+  },
+  "guide": {
+    "step0": {
+      "title": "Welcome to Sathi",
+      "text": "Hi! I am your voice banking companion Sathi. Let me show you how to use this app!",
+      "speak": "Hi! I am your voice banking companion Sathi. Let me show you how to use this app!"
+    },
+    "step1": {
+      "title": "Your Account Balance",
+      "text": "This is your balance card. Tap the eye icon to view or hide your balance and account details safely.",
+      "speak": "This is your balance card. Tap the eye icon to view or hide your balance and account details safely."
+    },
+    "step2": {
+      "title": "Talk to Sathi",
+      "text": "This is the Sathi mic button. Tap it and speak in your language to send money, check balance, or pay bills.",
+      "speak": "This is the Sathi mic button. Tap it and speak in your language to send money, check balance, or pay bills."
+    },
+    "step3": {
+      "title": "Quick Actions",
+      "text": "From here, you can quickly send money, show your QR code, pay bills, or view your transaction history.",
+      "speak": "From here, you can quickly send money, show your QR code, pay bills, or view your transaction history."
+    },
+    "skip": "Skip",
+    "next": "Next",
+    "back": "Back",
+    "finish": "Finish"
   }
 }

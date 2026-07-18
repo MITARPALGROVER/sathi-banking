@@ -146,6 +146,7 @@ export function AssistantOverlay() {
     <>
       <motion.button
         type="button"
+        id="sathi-mic-button"
         onClick={state === "listening" ? stop : start}
         aria-label={state === "listening" ? "Stop listening" : "Ask Sathi"}
         aria-pressed={state === "listening"}
