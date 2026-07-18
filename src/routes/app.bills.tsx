@@ -107,7 +107,9 @@ function Bills() {
 
       {step === "cat" && (
         <>
-          <h1 className="mt-6 font-display text-3xl font-semibold tracking-tight">{t("bills.title")}</h1>
+          <h1 className="mt-6 font-display text-3xl font-semibold tracking-tight">
+            {t("bills.title")}
+          </h1>
           <div className="mt-6 grid grid-cols-2 gap-3">
             {CATS.map((c) => (
               <button
@@ -131,7 +133,9 @@ function Bills() {
 
       {step === "provider" && cat && (
         <>
-          <h1 className="mt-6 font-display text-2xl font-semibold">{t("bills." + cat.id)} {t("bills.providers", "providers")}</h1>
+          <h1 className="mt-6 font-display text-2xl font-semibold">
+            {t("bills." + cat.id)} {t("bills.providers", "providers")}
+          </h1>
           <ul className="mt-4 divide-y divide-foreground/8 rounded-2xl bg-secondary/60">
             {cat.providers.map((p) => (
               <li key={p}>
@@ -185,11 +189,16 @@ function Bills() {
             <p className="text-xs text-foreground/55">{t("bills.paying", "Paying")}</p>
             <p className="mt-1 font-display text-3xl font-semibold">{formatINR(amount)}</p>
             <p className="mt-2 text-sm">
-              {t("bills.to", "to")} <span className="font-medium">{provider}</span> · {t("bills." + cat.id)}
+              {t("bills.to", "to")} <span className="font-medium">{provider}</span> ·{" "}
+              {t("bills." + cat.id)}
             </p>
           </div>
-          <p className="mt-8 text-center text-sm text-foreground/70">{t("bills.enterPin", "Enter UPI PIN")}</p>
-          <p className="text-center text-xs text-foreground/40">{t("bills.demoPin", "Demo PIN: 1234")}</p>
+          <p className="mt-8 text-center text-sm text-foreground/70">
+            {t("bills.enterPin", "Enter UPI PIN")}
+          </p>
+          <p className="text-center text-xs text-foreground/40">
+            {t("bills.demoPin", "Demo PIN: 1234")}
+          </p>
           <PinPad length={4} onComplete={handlePin} error={pinError} />
         </>
       )}

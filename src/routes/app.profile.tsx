@@ -48,9 +48,7 @@ function Profile() {
         <LogOut className="h-5 w-5" /> {t("profile.signout")}
       </Link>
 
-      <p className="mt-6 text-center text-xs text-foreground/40">
-        {t("profile.footerText")}
-      </p>
+      <p className="mt-6 text-center text-xs text-foreground/40">{t("profile.footerText")}</p>
     </main>
   );
 }
