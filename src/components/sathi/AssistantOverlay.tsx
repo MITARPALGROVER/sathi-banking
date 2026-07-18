@@ -56,7 +56,11 @@ export function AssistantOverlay() {
         try {
           sessionStorage.setItem(
             "sathi.prefill.send",
-            JSON.stringify({ recipient: action.recipient, amount: action.amount ?? null }),
+            JSON.stringify({
+              recipient: action.recipient ?? null,
+              amount: action.amount ?? null,
+              mode: action.mode ?? null,
+            }),
           );
         } catch {
           /* no-op */

@@ -94,5 +94,37 @@
     "unsupported": "Voice is not available on this device",
     "tryAgain": "Sorry, I didn't catch that",
     "hint": "Try: \"send money\", \"show balance\", \"help\""
+  },
+  "cards": {
+    "title": "Cards",
+    "holder": "Holder",
+    "expiry": "Expiry",
+    "frozen": "Frozen",
+    "showNumber": "Show number",
+    "hideNumber": "Hide number",
+    "freeze": "Freeze card",
+    "unfreeze": "Unfreeze card",
+    "dailyLimit": "Daily limit",
+    "adjustLimit": "Adjust in Profile → Card settings."
+  },
+  "profile": {
+    "title": "Profile",
+    "settings": "Settings",
+    "help": "Help & Support",
+    "language": "Language",
+    "about": "About Sathi",
+    "reset": "Reset demo data",
+    "signout": "Sign out (demo)",
+    "footerText": "Sathi demo · No real money movement · v4"
+  },
+  "common": {
+    "seeAll": "See all",
+    "back": "Back",
+    "done": "Done",
+    "continue": "Continue",
+    "send": "Send",
+    "receive": "Receive",
+    "bills": "Bills",
+    "history": "History"
   }
 }

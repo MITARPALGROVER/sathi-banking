@@ -30,14 +30,28 @@ function SendMoney() {
     try {
       const raw = sessionStorage.getItem("sathi.prefill.send");
       if (!raw) return;
-      const p = JSON.parse(raw) as { recipient?: string; amount?: number | null };
+      const p = JSON.parse(raw) as {
+        recipient?: string | null;
+        amount?: number | null;
+        mode?: "upi" | "phone" | "contact" | "qr" | null;
+      };
       sessionStorage.removeItem("sathi.prefill.send");
+      if (p.mode) {
+        setMode(p.mode);
+      }
       if (p.recipient) {
+        if (/^\d{10}$/.test(p.recipient) && !p.mode) {
+          setMode("phone");
+        }
         const match = bank.contacts.find((c) =>
           c.name.toLowerCase().includes(p.recipient!.toLowerCase()),
         );
         if (match) {
           setRecipient({ name: match.name, handle: match.upi });
+          setStep("amount");
+          if (p.amount && p.amount > 0) setAmount(p.amount);
+        } else {
+          setRecipient({ name: p.recipient, handle: p.recipient });
           setStep("amount");
           if (p.amount && p.amount > 0) setAmount(p.amount);
         }

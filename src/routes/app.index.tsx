@@ -13,6 +13,7 @@ import {
   EyeOff,
 } from "lucide-react";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 import { useBank, formatINR, maskAccount } from "@/lib/bank-state";
 import { spring } from "@/lib/motion";
@@ -23,6 +24,7 @@ export const Route = createFileRoute("/app/")({
 });
 
 function AppHome() {
+  const { t } = useTranslation();
   const bank = useBank();
   const [revealAcct, setRevealAcct] = useState(false);
   const recent = bank.transactions.slice(0, 4);
@@ -32,7 +34,7 @@ function AppHome() {
       <header className="flex items-center justify-between">
         <div>
           <p className="text-[11px] font-medium uppercase tracking-[0.2em] text-foreground/55">
-            Good morning
+            {t("home.greeting", { name: "" }).replace(/,\s*$/, "")}
           </p>
           <h1 className="mt-1 font-display text-2xl font-semibold tracking-tight">
             {bank.accountHolder.split(" ")[0]}
@@ -54,7 +56,7 @@ function AppHome() {
         />
         <div className="glass relative rounded-[24px] p-6 text-white">
           <p className="text-[11px] font-medium uppercase tracking-[0.22em] text-white/70">
-            Available balance
+            {t("home.balanceLabel")}
           </p>
           <motion.p
             key={bank.balance}
@@ -93,14 +95,14 @@ function AppHome() {
       {/* Quick actions */}
       <section className="mt-8">
         <p className="text-[11px] font-medium uppercase tracking-[0.22em] text-foreground/55">
-          Quick actions
+          {t("home.quickActions")}
         </p>
         <div className="mt-4 grid grid-cols-4 gap-2 sm:gap-3">
           {[
-            { to: "/app/send", label: "Send", Icon: Send },
-            { to: "/app/receive", label: "Receive", Icon: QrCode },
-            { to: "/app/bills", label: "Bills", Icon: Lightbulb },
-            { to: "/app/history", label: "History", Icon: Receipt },
+            { to: "/app/send", label: t("common.send"), Icon: Send },
+            { to: "/app/receive", label: t("common.receive"), Icon: QrCode },
+            { to: "/app/bills", label: t("common.bills"), Icon: Lightbulb },
+            { to: "/app/history", label: t("common.history"), Icon: Receipt },
           ].map(({ to, label, Icon }) => (
             <Link
               key={to}
@@ -122,13 +124,13 @@ function AppHome() {
       <section className="mt-8">
         <div className="flex items-center justify-between">
           <p className="text-[11px] font-medium uppercase tracking-[0.22em] text-foreground/55">
-            Recent activity
+            {t("balance.recent")}
           </p>
           <Link
             to="/app/history"
             className="inline-flex items-center gap-1 text-xs font-medium text-emerald"
           >
-            See all <ChevronRight className="h-3.5 w-3.5" />
+            {t("common.seeAll")} <ChevronRight className="h-3.5 w-3.5" />
           </Link>
         </div>
         <ul className="mt-3 divide-y divide-foreground/8 rounded-2xl bg-secondary/60">

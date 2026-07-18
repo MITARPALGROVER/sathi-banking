@@ -8,7 +8,13 @@ export type AssistantAction =
   | { kind: "checkBalance"; spoken: string }
   | { kind: "showTransactions"; filter?: "all" | "credit" | "debit"; spoken: string }
   | { kind: "navigate"; to: string; spoken: string }
-  | { kind: "prefillSend"; recipient: string; amount?: number; spoken: string }
+  | {
+      kind: "prefillSend";
+      recipient?: string;
+      amount?: number;
+      mode?: "upi" | "phone" | "contact" | "qr";
+      spoken: string;
+    }
   | { kind: "prefillBill"; category: string; spoken: string }
   | { kind: "explain"; topic: string; spoken: string }
   | { kind: "clarify"; question: string };
@@ -22,6 +28,7 @@ Your job: read the user's transcript and call EXACTLY ONE tool that best represe
 - Money-moving actions (send, pay bill) NEVER execute directly — you only PREFILL a confirmation screen. Say "please confirm on screen" in the spoken reply.
 - If the request is ambiguous (missing recipient, missing amount, unclear intent), call the "clarify" tool with a short spoken question instead of guessing.
 - Never invent amounts. If the user did not name an amount, leave it out.
+- For sending money, determine if they want to pay a specific contact (default mode "contact"), use a phone number (mode "phone"), use a UPI ID (mode "upi"), or scan a QR code (mode "qr").
 - Known contact names include: ${CONTACT_HINTS.join(", ")}. If the user names one, use that exact name.
 - For balance/transactions/help, use the corresponding tool.
 - Keep spoken replies under 20 words. Calm, warm, plain.`;
@@ -70,14 +77,21 @@ export const askAssistant = createServerFn({ method: "POST" })
       }),
       prefillSend: tool({
         description:
-          "Prefill the Send Money confirmation screen for a recipient (and amount if known). Does NOT send.",
+          "Prefill the Send Money screen. Can specify recipient, amount, and the preferred mode (contact, phone, upi, qr).",
         inputSchema: z.object({
-          recipient: z.string(),
-          amount: z.number().positive().nullable(),
+          recipient: z.string().nullable().optional(),
+          amount: z.number().positive().nullable().optional(),
+          mode: z.enum(["contact", "phone", "upi", "qr"]).optional(),
           spoken: z.string(),
         }),
-        execute: async ({ recipient, amount, spoken }) => {
-          result = { kind: "prefillSend", recipient, amount: amount ?? undefined, spoken };
+        execute: async ({ recipient, amount, mode, spoken }) => {
+          result = {
+            kind: "prefillSend",
+            recipient: recipient ?? undefined,
+            amount: amount ?? undefined,
+            mode,
+            spoken,
+          };
           return "ok";
         },
       }),

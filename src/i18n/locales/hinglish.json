@@ -92,5 +92,37 @@
     "unsupported": "Is device par voice available nahi hai",
     "tryAgain": "Maaf kijiye, samajh nahi aaya",
     "hint": "Bolo: \"paisa bhejo\", \"balance dikhao\", \"madad\""
+  },
+  "cards": {
+    "title": "Cards",
+    "holder": "Holder",
+    "expiry": "Expiry",
+    "frozen": "Frozen",
+    "showNumber": "Show number",
+    "hideNumber": "Hide number",
+    "freeze": "Freeze card",
+    "unfreeze": "Unfreeze card",
+    "dailyLimit": "Daily limit",
+    "adjustLimit": "Profile → Card settings mein change karein."
+  },
+  "profile": {
+    "title": "Profile",
+    "settings": "Settings",
+    "help": "Help & Support",
+    "language": "Language",
+    "about": "Sathi ke baare mein",
+    "reset": "Demo data reset karein",
+    "signout": "Sign out (demo)",
+    "footerText": "Sathi demo · No real money movement · v4"
+  },
+  "common": {
+    "seeAll": "See all",
+    "back": "Wapas",
+    "done": "Ho gaya",
+    "continue": "Continue",
+    "send": "Bhejo",
+    "receive": "Receive",
+    "bills": "Bills",
+    "history": "History"
   }
 }

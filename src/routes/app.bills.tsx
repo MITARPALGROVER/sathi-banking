@@ -1,5 +1,6 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
 import { Lightbulb, Smartphone, Tv, Droplet, Flame, Check } from "lucide-react";
 
@@ -7,6 +8,7 @@ import { bank as bankApi, useBank, formatINR } from "@/lib/bank-state";
 import { PinPad } from "@/components/sathi/PinPad";
 import { spring } from "@/lib/motion";
 import { speak } from "@/lib/speech";
+import { getActiveLocale } from "@/i18n/config";
 
 export const Route = createFileRoute("/app/bills")({
   head: () => ({ meta: [{ title: "Pay bills — Sathi" }] }),
@@ -35,6 +37,8 @@ const CATS: Category[] = [
 type Step = "cat" | "provider" | "amount" | "pin" | "done";
 
 function Bills() {
+  const { t, i18n } = useTranslation();
+  const locale = getActiveLocale(i18n.language);
   const bank = useBank();
   const nav = useNavigate();
   const [step, setStep] = useState<Step>("cat");
@@ -69,7 +73,14 @@ function Bills() {
     if (!cat || !provider) return;
     bankApi.payBill({ provider, category: cat.label, amount });
     setStep("done");
-    speak(`Paid ${amount} rupees to ${provider}`, "en");
+    speak(
+      t("bills.speakSuccess", {
+        amount,
+        provider,
+        defaultValue: `Paid ${amount} rupees to ${provider}`,
+      }),
+      locale,
+    );
   }
 
   return (
@@ -91,12 +102,12 @@ function Bills() {
         }
         className="text-sm text-foreground/60"
       >
-        ← Back
+        ← {t("back")}
       </button>
 
       {step === "cat" && (
         <>
-          <h1 className="mt-6 font-display text-3xl font-semibold tracking-tight">Pay bills</h1>
+          <h1 className="mt-6 font-display text-3xl font-semibold tracking-tight">{t("bills.title")}</h1>
           <div className="mt-6 grid grid-cols-2 gap-3">
             {CATS.map((c) => (
               <button
@@ -111,7 +122,7 @@ function Bills() {
                 <span className="grid h-11 w-11 place-items-center rounded-full bg-emerald text-emerald-foreground">
                   <c.icon className="h-5 w-5" />
                 </span>
-                <span className="font-display text-lg font-semibold">{c.label}</span>
+                <span className="font-display text-lg font-semibold">{t("bills." + c.id)}</span>
               </button>
             ))}
           </div>
@@ -120,7 +131,7 @@ function Bills() {
 
       {step === "provider" && cat && (
         <>
-          <h1 className="mt-6 font-display text-2xl font-semibold">{cat.label} providers</h1>
+          <h1 className="mt-6 font-display text-2xl font-semibold">{t("bills." + cat.id)} {t("bills.providers", "providers")}</h1>
           <ul className="mt-4 divide-y divide-foreground/8 rounded-2xl bg-secondary/60">
             {cat.providers.map((p) => (
               <li key={p}>
@@ -143,7 +154,7 @@ function Bills() {
       {step === "amount" && cat && (
         <>
           <p className="mt-6 text-[11px] font-medium uppercase tracking-[0.2em] text-foreground/55">
-            {cat.label}
+            {t("bills." + cat.id)}
           </p>
           <h1 className="mt-1 font-display text-2xl font-semibold">{provider}</h1>
           <div className="mt-8 flex items-baseline gap-2">
@@ -163,7 +174,7 @@ function Bills() {
             disabled={amount <= 0 || amount > bank.balance}
             className="mt-8 w-full rounded-full bg-emerald py-4 text-sm font-medium text-emerald-foreground disabled:opacity-40"
           >
-            Continue
+            {t("common.continue")}
           </button>
         </>
       )}
@@ -171,14 +182,14 @@ function Bills() {
       {step === "pin" && cat && (
         <>
           <div className="mt-6 rounded-2xl bg-secondary p-5">
-            <p className="text-xs text-foreground/55">Paying</p>
+            <p className="text-xs text-foreground/55">{t("bills.paying", "Paying")}</p>
             <p className="mt-1 font-display text-3xl font-semibold">{formatINR(amount)}</p>
             <p className="mt-2 text-sm">
-              to <span className="font-medium">{provider}</span> · {cat.label}
+              {t("bills.to", "to")} <span className="font-medium">{provider}</span> · {t("bills." + cat.id)}
             </p>
           </div>
-          <p className="mt-8 text-center text-sm text-foreground/70">Enter UPI PIN</p>
-          <p className="text-center text-xs text-foreground/40">Demo PIN: 1234</p>
+          <p className="mt-8 text-center text-sm text-foreground/70">{t("bills.enterPin", "Enter UPI PIN")}</p>
+          <p className="text-center text-xs text-foreground/40">{t("bills.demoPin", "Demo PIN: 1234")}</p>
           <PinPad length={4} onComplete={handlePin} error={pinError} />
         </>
       )}
@@ -194,7 +205,7 @@ function Bills() {
             <Check className="h-12 w-12" strokeWidth={3} />
           </motion.div>
           <p className="mt-6 text-[11px] font-medium uppercase tracking-[0.22em] text-sage">
-            Bill paid
+            {t("bills.success", "Bill paid")}
           </p>
           <h1 className="mt-2 font-display text-3xl font-semibold">{formatINR(amount)}</h1>
           <p className="mt-1 text-sm text-foreground/70">{provider}</p>
@@ -203,7 +214,7 @@ function Bills() {
             onClick={() => nav({ to: "/app" })}
             className="mt-10 w-full rounded-full bg-emerald py-4 text-sm font-medium text-emerald-foreground"
           >
-            Done
+            {t("common.done")}
           </button>
         </section>
       )}
