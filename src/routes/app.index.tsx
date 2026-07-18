@@ -1,7 +1,16 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import {
-  ArrowUpRight, ArrowDownLeft, Send, QrCode, Receipt, Lightbulb, ChevronRight, Copy, Eye, EyeOff,
+  ArrowUpRight,
+  ArrowDownLeft,
+  Send,
+  QrCode,
+  Receipt,
+  Lightbulb,
+  ChevronRight,
+  Copy,
+  Eye,
+  EyeOff,
 } from "lucide-react";
 import { useState } from "react";
 
@@ -113,7 +122,10 @@ function AppHome() {
           <p className="text-[11px] font-medium uppercase tracking-[0.22em] text-foreground/55">
             Recent activity
           </p>
-          <Link to="/app/history" className="inline-flex items-center gap-1 text-xs font-medium text-emerald">
+          <Link
+            to="/app/history"
+            className="inline-flex items-center gap-1 text-xs font-medium text-emerald"
+          >
             See all <ChevronRight className="h-3.5 w-3.5" />
           </Link>
         </div>
@@ -135,11 +147,18 @@ function AppHome() {
               <div className="min-w-0 flex-1">
                 <p className="truncate text-sm font-medium">{t.party}</p>
                 <p className="text-xs text-foreground/55">
-                  {new Date(t.ts).toLocaleDateString("en-IN", { day: "numeric", month: "short" })} · {t.method.toUpperCase()}
+                  {new Date(t.ts).toLocaleDateString("en-IN", { day: "numeric", month: "short" })} ·{" "}
+                  {t.method.toUpperCase()}
                 </p>
               </div>
-              <p className={"font-mono text-sm font-semibold " + (t.kind === "credit" ? "text-sage" : "text-foreground")}>
-                {t.kind === "credit" ? "+" : "−"}{formatINR(t.amount).replace("₹", "₹")}
+              <p
+                className={
+                  "font-mono text-sm font-semibold " +
+                  (t.kind === "credit" ? "text-sage" : "text-foreground")
+                }
+              >
+                {t.kind === "credit" ? "+" : "−"}
+                {formatINR(t.amount).replace("₹", "₹")}
               </p>
             </li>
           ))}

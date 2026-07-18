@@ -16,13 +16,19 @@ function Receive() {
   const payload = `upi://pay?pa=${encodeURIComponent(bank.upiId)}&pn=${encodeURIComponent(bank.accountHolder)}&cu=INR`;
 
   useEffect(() => {
-    void QRCode.toDataURL(payload, { margin: 1, width: 320, color: { dark: "#16342B", light: "#F5F3EC" } }).then(setQr);
+    void QRCode.toDataURL(payload, {
+      margin: 1,
+      width: 320,
+      color: { dark: "#16342B", light: "#F5F3EC" },
+    }).then(setQr);
   }, [payload]);
 
   return (
     <main className="mx-auto max-w-2xl px-5 pt-8">
       <h1 className="font-display text-3xl font-semibold tracking-tight">Receive money</h1>
-      <p className="mt-2 text-sm text-foreground/60">Show this QR — anyone with a UPI app can pay you.</p>
+      <p className="mt-2 text-sm text-foreground/60">
+        Show this QR — anyone with a UPI app can pay you.
+      </p>
 
       <div className="mt-6 rounded-3xl bg-secondary p-6 text-center">
         <div className="mx-auto grid h-72 w-72 place-items-center rounded-2xl bg-background p-4">
@@ -41,7 +47,11 @@ function Receive() {
           </button>
           <button
             type="button"
-            onClick={() => void navigator.share?.({ title: "Pay me on Sathi", text: `Pay me at ${bank.upiId}` }).catch(() => undefined)}
+            onClick={() =>
+              void navigator
+                .share?.({ title: "Pay me on Sathi", text: `Pay me at ${bank.upiId}` })
+                .catch(() => undefined)
+            }
             className="inline-flex items-center gap-2 rounded-full border border-foreground/15 px-5 py-2.5 text-sm font-medium text-foreground/80"
           >
             <Share2 className="h-4 w-4" /> Share
@@ -50,8 +60,12 @@ function Receive() {
       </div>
 
       <div className="mt-6 rounded-2xl border border-foreground/10 p-4 text-xs text-foreground/60">
-        <p><span className="font-medium text-foreground">Account:</span> {bank.accountNumber}</p>
-        <p className="mt-1"><span className="font-medium text-foreground">IFSC:</span> {bank.ifsc}</p>
+        <p>
+          <span className="font-medium text-foreground">Account:</span> {bank.accountNumber}
+        </p>
+        <p className="mt-1">
+          <span className="font-medium text-foreground">IFSC:</span> {bank.ifsc}
+        </p>
       </div>
     </main>
   );

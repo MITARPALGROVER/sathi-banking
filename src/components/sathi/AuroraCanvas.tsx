@@ -80,9 +80,9 @@ export function AuroraCanvas({ className = "" }: { className?: string }) {
           uniforms: {
             uTime: { value: 0 },
             uRes: { value: [1, 1] },
-            uA: { value: [0.06, 0.24, 0.20] },   // deep emerald
-            uB: { value: [0.83, 0.66, 0.38] },   // soft gold
-            uC: { value: [0.98, 0.97, 0.94] },   // ivory highlight
+            uA: { value: [0.06, 0.24, 0.2] }, // deep emerald
+            uB: { value: [0.83, 0.66, 0.38] }, // soft gold
+            uC: { value: [0.98, 0.97, 0.94] }, // ivory highlight
           },
         });
 
@@ -122,7 +122,10 @@ export function AuroraCanvas({ className = "" }: { className?: string }) {
 
     const schedule =
       "requestIdleCallback" in window
-        ? (cb: () => void) => (window as unknown as { requestIdleCallback: (cb: () => void) => number }).requestIdleCallback(cb)
+        ? (cb: () => void) =>
+            (
+              window as unknown as { requestIdleCallback: (cb: () => void) => number }
+            ).requestIdleCallback(cb)
         : (cb: () => void) => window.setTimeout(cb, 40);
     schedule(() => {
       void start();

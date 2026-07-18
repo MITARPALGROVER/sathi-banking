@@ -42,9 +42,7 @@ function Balance() {
                   aria-hidden="true"
                   className={
                     "grid h-12 w-12 shrink-0 place-items-center rounded-2xl " +
-                    (isCredit
-                      ? "bg-sage/20 text-sage"
-                      : "bg-brick/15 text-brick")
+                    (isCredit ? "bg-sage/20 text-sage" : "bg-brick/15 text-brick")
                   }
                 >
                   {isCredit ? (

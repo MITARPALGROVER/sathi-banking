@@ -65,15 +65,9 @@ function SendConfirm() {
         </h1>
 
         <section className="mt-8 flex flex-col items-center gap-4 rounded-3xl bg-panel border border-border p-8">
-          <Avatar
-            name={name}
-            color={contact?.color ?? "oklch(0.75 0.10 65)"}
-            size={112}
-          />
+          <Avatar name={name} color={contact?.color ?? "oklch(0.75 0.10 65)"} size={112} />
           <p className="font-display text-2xl font-semibold text-foreground">{name}</p>
-          <p className="font-display text-6xl font-bold text-emerald">
-            ${amount}
-          </p>
+          <p className="font-display text-6xl font-bold text-emerald">${amount}</p>
         </section>
 
         <p

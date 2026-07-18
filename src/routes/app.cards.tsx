@@ -24,8 +24,13 @@ function Cards() {
         initial={{ y: 20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={spring}
-        className={"relative mt-6 aspect-[1.6/1] w-full max-w-md overflow-hidden rounded-3xl p-6 text-white shadow-2xl " + (card.frozen ? "grayscale" : "")}
-        style={{ background: "linear-gradient(135deg, oklch(0.30 0.045 168), oklch(0.20 0.03 168))" }}
+        className={
+          "relative mt-6 aspect-[1.6/1] w-full max-w-md overflow-hidden rounded-3xl p-6 text-white shadow-2xl " +
+          (card.frozen ? "grayscale" : "")
+        }
+        style={{
+          background: "linear-gradient(135deg, oklch(0.30 0.045 168), oklch(0.20 0.03 168))",
+        }}
       >
         <div className="flex items-center justify-between">
           <span className="font-display text-lg font-semibold">Sathi Bank</span>
@@ -65,7 +70,10 @@ function Cards() {
         <button
           type="button"
           onClick={() => bankApi.toggleFreeze()}
-          className={"flex min-h-[68px] items-center justify-center gap-2 rounded-2xl text-sm font-medium " + (card.frozen ? "bg-sage text-white" : "bg-brick text-white")}
+          className={
+            "flex min-h-[68px] items-center justify-center gap-2 rounded-2xl text-sm font-medium " +
+            (card.frozen ? "bg-sage text-white" : "bg-brick text-white")
+          }
         >
           {card.frozen ? <Sun className="h-4 w-4" /> : <Snowflake className="h-4 w-4" />}
           {card.frozen ? "Unfreeze card" : "Freeze card"}
@@ -73,7 +81,9 @@ function Cards() {
       </div>
 
       <div className="mt-6 rounded-2xl border border-foreground/10 p-5">
-        <p className="text-[11px] font-medium uppercase tracking-[0.2em] text-foreground/55">Daily limit</p>
+        <p className="text-[11px] font-medium uppercase tracking-[0.2em] text-foreground/55">
+          Daily limit
+        </p>
         <p className="mt-2 font-display text-2xl font-semibold">{formatINR(card.dailyLimit)}</p>
         <p className="mt-1 text-xs text-foreground/55">Adjust in Profile → Card settings.</p>
       </div>

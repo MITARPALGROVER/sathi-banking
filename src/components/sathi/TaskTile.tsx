@@ -42,9 +42,7 @@ export function TaskTile({
       <span
         className={
           "grid h-14 w-14 place-items-center rounded-2xl " +
-          (variant === "primary"
-            ? "bg-gold text-gold-foreground"
-            : "bg-emerald/10 text-emerald")
+          (variant === "primary" ? "bg-gold text-gold-foreground" : "bg-emerald/10 text-emerald")
         }
         aria-hidden="true"
       >
@@ -58,9 +56,7 @@ export function TaskTile({
           <span
             className={
               "mt-1 text-sm " +
-              (variant === "primary"
-                ? "text-emerald-foreground/80"
-                : "text-muted-foreground")
+              (variant === "primary" ? "text-emerald-foreground/80" : "text-muted-foreground")
             }
           >
             {sublabel}

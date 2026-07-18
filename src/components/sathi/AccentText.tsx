@@ -29,10 +29,7 @@ export function AccentText({
   const after = idx >= 0 ? text.slice(idx + accent.length) : "";
 
   return (
-    <Tag
-      className={className}
-      style={{ fontFamily: "var(--font-display)", ...style }}
-    >
+    <Tag className={className} style={{ fontFamily: "var(--font-display)", ...style }}>
       {before}
       {match ? (
         <Fragment>

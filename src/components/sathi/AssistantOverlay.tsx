@@ -5,7 +5,12 @@ import { useTranslation } from "react-i18next";
 import { motion, AnimatePresence } from "framer-motion";
 
 import type { Locale } from "@/i18n/config";
-import { LOCALE_TO_BCP47, getSpeechRecognitionCtor, speak, type SpeechRecognitionLike } from "@/lib/speech";
+import {
+  LOCALE_TO_BCP47,
+  getSpeechRecognitionCtor,
+  speak,
+  type SpeechRecognitionLike,
+} from "@/lib/speech";
 import { spring } from "@/lib/motion";
 import { askAssistant, type AssistantAction } from "@/lib/assistant.functions";
 
@@ -41,7 +46,11 @@ export function AssistantOverlay() {
         void navigate({ to: "/app/history" });
         break;
       case "navigate":
-        try { void navigate({ to: action.to }); } catch { /* invalid */ }
+        try {
+          void navigate({ to: action.to });
+        } catch {
+          /* invalid */
+        }
         break;
       case "prefillSend":
         try {
@@ -49,13 +58,17 @@ export function AssistantOverlay() {
             "sathi.prefill.send",
             JSON.stringify({ recipient: action.recipient, amount: action.amount ?? null }),
           );
-        } catch { /* no-op */ }
+        } catch {
+          /* no-op */
+        }
         void navigate({ to: "/app/send" });
         break;
       case "prefillBill":
         try {
           sessionStorage.setItem("sathi.prefill.bill", action.category);
-        } catch { /* no-op */ }
+        } catch {
+          /* no-op */
+        }
         void navigate({ to: "/app/bills" });
         break;
       case "explain":
@@ -91,7 +104,10 @@ export function AssistantOverlay() {
     };
     rec.onerror = () => setState("idle");
     rec.onend = async () => {
-      if (!finalText.trim()) { setState("idle"); return; }
+      if (!finalText.trim()) {
+        setState("idle");
+        return;
+      }
       setState("thinking");
       try {
         const action = await askAssistant({ data: { transcript: finalText, locale } });
@@ -103,7 +119,11 @@ export function AssistantOverlay() {
       }
     };
     recRef.current = rec;
-    try { rec.start(); } catch { setState("idle"); }
+    try {
+      rec.start();
+    } catch {
+      setState("idle");
+    }
   }
 
   function stop() {
@@ -174,7 +194,8 @@ export function AssistantOverlay() {
                 </button>
               </div>
               <p className="mt-4 min-h-[3rem] font-display text-xl leading-snug text-foreground">
-                {transcript || (state === "listening" ? "Speak now — Hindi, English, Hinglish…" : "")}
+                {transcript ||
+                  (state === "listening" ? "Speak now — Hindi, English, Hinglish…" : "")}
               </p>
               {reply ? (
                 <p className="mt-3 rounded-2xl bg-emerald/8 p-4 text-[15px] leading-relaxed text-emerald">

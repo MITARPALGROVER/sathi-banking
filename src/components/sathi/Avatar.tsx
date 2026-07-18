@@ -1,14 +1,6 @@
 import { initialsOf } from "@/lib/mock";
 
-export function Avatar({
-  name,
-  color,
-  size = 96,
-}: {
-  name: string;
-  color: string;
-  size?: number;
-}) {
+export function Avatar({ name, color, size = 96 }: { name: string; color: string; size?: number }) {
   return (
     <span
       aria-hidden="true"

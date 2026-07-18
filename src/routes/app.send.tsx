@@ -33,14 +33,18 @@ function SendMoney() {
       const p = JSON.parse(raw) as { recipient?: string; amount?: number | null };
       sessionStorage.removeItem("sathi.prefill.send");
       if (p.recipient) {
-        const match = bank.contacts.find((c) => c.name.toLowerCase().includes(p.recipient!.toLowerCase()));
+        const match = bank.contacts.find((c) =>
+          c.name.toLowerCase().includes(p.recipient!.toLowerCase()),
+        );
         if (match) {
           setRecipient({ name: match.name, handle: match.upi });
           setStep("amount");
           if (p.amount && p.amount > 0) setAmount(p.amount);
         }
       }
-    } catch { /* no-op */ }
+    } catch {
+      /* no-op */
+    }
   }, [bank.contacts]);
 
   function pickContact(id: string) {
@@ -62,7 +66,13 @@ function SendMoney() {
     }
     setPinError(null);
     if (!recipient) return;
-    const tx = bankApi.sendMoney({ recipientName: recipient.name, upiOrPhone: recipient.handle, amount, note, method: "upi" });
+    const tx = bankApi.sendMoney({
+      recipientName: recipient.name,
+      upiOrPhone: recipient.handle,
+      amount,
+      note,
+      method: "upi",
+    });
     setTxnId(tx.id);
     setStep("done");
     speak(`Sent ${amount} rupees to ${recipient.name}`, "en");
@@ -72,7 +82,11 @@ function SendMoney() {
     <main className="mx-auto max-w-2xl px-5 pt-8">
       <button
         type="button"
-        onClick={() => (step === "who" ? navigate({ to: "/app" }) : setStep(step === "amount" ? "who" : step === "pin" ? "amount" : "who"))}
+        onClick={() =>
+          step === "who"
+            ? navigate({ to: "/app" })
+            : setStep(step === "amount" ? "who" : step === "pin" ? "amount" : "who")
+        }
         className="text-sm text-foreground/60 hover:text-foreground"
       >
         ← Back
@@ -86,9 +100,9 @@ function SendMoney() {
           <div className="mt-6 grid grid-cols-4 gap-2">
             {[
               { k: "contact", label: "Contact", Icon: Users },
-              { k: "upi",     label: "UPI ID",  Icon: AtSign },
-              { k: "phone",   label: "Phone",   Icon: Phone },
-              { k: "qr",      label: "QR",      Icon: ScanLine },
+              { k: "upi", label: "UPI ID", Icon: AtSign },
+              { k: "phone", label: "Phone", Icon: Phone },
+              { k: "qr", label: "QR", Icon: ScanLine },
             ].map(({ k, label, Icon }) => (
               <button
                 key={k}
@@ -96,7 +110,9 @@ function SendMoney() {
                 onClick={() => setMode(k as typeof mode)}
                 className={
                   "flex min-h-[80px] flex-col items-center justify-center gap-1.5 rounded-2xl border p-2 text-xs font-medium transition-colors " +
-                  (mode === k ? "border-emerald bg-emerald text-emerald-foreground" : "border-foreground/10 bg-secondary text-foreground/80")
+                  (mode === k
+                    ? "border-emerald bg-emerald text-emerald-foreground"
+                    : "border-foreground/10 bg-secondary text-foreground/80")
                 }
               >
                 <Icon className="h-5 w-5" />
@@ -154,7 +170,10 @@ function SendMoney() {
                   className="mt-2 w-full rounded-2xl bg-secondary px-4 py-4 font-display text-lg focus:outline-none"
                 />
               </label>
-              <button type="submit" className="w-full rounded-full bg-emerald py-4 text-sm font-medium text-emerald-foreground">
+              <button
+                type="submit"
+                className="w-full rounded-full bg-emerald py-4 text-sm font-medium text-emerald-foreground"
+              >
                 Continue
               </button>
             </form>
@@ -179,13 +198,17 @@ function SendMoney() {
 
       {step === "amount" && recipient && (
         <section className="mt-6">
-          <p className="text-[11px] font-medium uppercase tracking-[0.2em] text-foreground/55">Paying</p>
+          <p className="text-[11px] font-medium uppercase tracking-[0.2em] text-foreground/55">
+            Paying
+          </p>
           <h1 className="mt-1 font-display text-2xl font-semibold">{recipient.name}</h1>
           <p className="text-xs text-foreground/55">{recipient.handle}</p>
 
           <div className="mt-8">
             <label className="block">
-              <span className="text-[11px] font-medium uppercase tracking-[0.2em] text-foreground/55">Amount</span>
+              <span className="text-[11px] font-medium uppercase tracking-[0.2em] text-foreground/55">
+                Amount
+              </span>
               <div className="mt-3 flex items-baseline gap-2">
                 <span className="font-display text-4xl text-foreground/60">₹</span>
                 <input
@@ -213,7 +236,9 @@ function SendMoney() {
             </div>
 
             <label className="mt-6 block">
-              <span className="text-[11px] font-medium uppercase tracking-[0.2em] text-foreground/55">Note (optional)</span>
+              <span className="text-[11px] font-medium uppercase tracking-[0.2em] text-foreground/55">
+                Note (optional)
+              </span>
               <input
                 value={note}
                 onChange={(e) => setNote(e.target.value)}
@@ -239,11 +264,15 @@ function SendMoney() {
 
       {step === "pin" && recipient && (
         <section className="mt-6">
-          <p className="text-[11px] font-medium uppercase tracking-[0.2em] text-foreground/55">Confirm payment</p>
+          <p className="text-[11px] font-medium uppercase tracking-[0.2em] text-foreground/55">
+            Confirm payment
+          </p>
           <div className="mt-2 rounded-2xl bg-secondary p-5">
             <p className="text-xs text-foreground/55">Sending</p>
             <p className="mt-1 font-display text-3xl font-semibold">{formatINR(amount)}</p>
-            <p className="mt-2 text-sm">to <span className="font-medium">{recipient.name}</span></p>
+            <p className="mt-2 text-sm">
+              to <span className="font-medium">{recipient.name}</span>
+            </p>
             <p className="text-xs text-foreground/55">{recipient.handle}</p>
           </div>
           <p className="mt-8 text-center text-sm text-foreground/70">Enter UPI PIN</p>
@@ -262,10 +291,14 @@ function SendMoney() {
           >
             <Check className="h-12 w-12" strokeWidth={3} />
           </motion.div>
-          <p className="mt-6 text-[11px] font-medium uppercase tracking-[0.22em] text-sage">Payment successful</p>
+          <p className="mt-6 text-[11px] font-medium uppercase tracking-[0.22em] text-sage">
+            Payment successful
+          </p>
           <h1 className="mt-2 font-display text-3xl font-semibold">{formatINR(amount)}</h1>
           <p className="mt-1 text-sm text-foreground/70">to {recipient.name}</p>
-          {txnId ? <p className="mt-3 font-mono text-[10px] text-foreground/40">TXN {txnId}</p> : null}
+          {txnId ? (
+            <p className="mt-3 font-mono text-[10px] text-foreground/40">TXN {txnId}</p>
+          ) : null}
           <div className="mt-10 flex w-full gap-3">
             <button
               type="button"
@@ -276,7 +309,12 @@ function SendMoney() {
             </button>
             <button
               type="button"
-              onClick={() => { setStep("who"); setRecipient(null); setAmount(0); setNote(""); }}
+              onClick={() => {
+                setStep("who");
+                setRecipient(null);
+                setAmount(0);
+                setNote("");
+              }}
               className="flex-1 rounded-full border border-foreground/15 py-4 text-sm font-medium text-foreground/70"
             >
               Send again

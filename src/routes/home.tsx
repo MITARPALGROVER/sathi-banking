@@ -1,12 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useTranslation } from "react-i18next";
-import {
-  Send,
-  Wallet,
-  Receipt,
-  LifeBuoy,
-  Settings as SettingsIcon,
-} from "lucide-react";
+import { Send, Wallet, Receipt, LifeBuoy, Settings as SettingsIcon } from "lucide-react";
 
 import "@/i18n/config";
 import { TaskTile } from "@/components/sathi/TaskTile";
@@ -60,9 +54,7 @@ function Home() {
 
             {/* THE signature glass balance card */}
             <GlassCard className="mt-4 px-7 py-8">
-              <p className="text-sm font-medium text-foreground/70">
-                {t("home.balanceLabel")}
-              </p>
+              <p className="text-sm font-medium text-foreground/70">{t("home.balanceLabel")}</p>
               <p className="mt-2 font-display text-5xl font-bold tracking-tight text-foreground sm:text-6xl">
                 {formatMoney(BALANCE)}
               </p>

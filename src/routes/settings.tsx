@@ -5,12 +5,7 @@ import "@/i18n/config";
 import { BackButton } from "@/components/sathi/BackButton";
 import { ThemeToggle } from "@/components/sathi/ThemeToggle";
 import { PageTransition } from "@/components/sathi/PageTransition";
-import {
-  SUPPORTED_LOCALES,
-  LOCALE_LABELS,
-  setLocale,
-  type Locale,
-} from "@/i18n/config";
+import { SUPPORTED_LOCALES, LOCALE_LABELS, setLocale, type Locale } from "@/i18n/config";
 import { useFontScale } from "@/lib/settings";
 
 export const Route = createFileRoute("/settings")({
@@ -46,7 +41,11 @@ function Settings() {
           <h2 className="font-display text-lg font-semibold text-foreground">
             {t("settings.language")}
           </h2>
-          <div className="mt-4 flex flex-wrap gap-2" role="group" aria-label={t("settings.language")}>
+          <div
+            className="mt-4 flex flex-wrap gap-2"
+            role="group"
+            aria-label={t("settings.language")}
+          >
             {SUPPORTED_LOCALES.map((lng) => (
               <button
                 key={lng}
@@ -68,7 +67,10 @@ function Settings() {
 
         {/* Font size */}
         <section className="mt-6 rounded-3xl border border-border bg-panel p-5">
-          <label htmlFor="font-scale" className="font-display text-lg font-semibold text-foreground">
+          <label
+            htmlFor="font-scale"
+            className="font-display text-lg font-semibold text-foreground"
+          >
             {t("settings.fontSize")}
           </label>
           <div className="mt-4 flex items-center gap-4">
@@ -85,9 +87,7 @@ function Settings() {
             />
             <span className="font-display text-2xl text-foreground">{t("settings.larger")}</span>
           </div>
-          <p className="mt-2 text-sm text-muted-foreground">
-            {Math.round(scale * 100)}%
-          </p>
+          <p className="mt-2 text-sm text-muted-foreground">{Math.round(scale * 100)}%</p>
         </section>
       </main>
     </PageTransition>

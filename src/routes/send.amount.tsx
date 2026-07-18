@@ -55,8 +55,7 @@ function SendAmount() {
         </div>
 
         <p className="mt-8 text-center text-base text-muted-foreground">
-          {t("send.step2")}{" "}
-          <span className="font-semibold text-foreground">{label}</span>
+          {t("send.step2")} <span className="font-semibold text-foreground">{label}</span>
         </p>
 
         <div
@@ -65,12 +64,14 @@ function SendAmount() {
           aria-label={`${t("send.amountLabel")} ${num}`}
         >
           <span className="text-4xl text-emerald">$</span>
-          <span className="ml-1 text-6xl sm:text-7xl text-foreground">
-            {amount || "0"}
-          </span>
+          <span className="ml-1 text-6xl sm:text-7xl text-foreground">{amount || "0"}</span>
         </div>
 
-        <div className="mt-6 flex justify-center gap-3" role="group" aria-label={t("send.quickAmount")}>
+        <div
+          className="mt-6 flex justify-center gap-3"
+          role="group"
+          aria-label={t("send.quickAmount")}
+        >
           {QUICK.map((q) => (
             <button
               key={q}
@@ -94,11 +95,7 @@ function SendAmount() {
               transition={spring}
               className="grid h-16 min-h-16 place-items-center rounded-2xl bg-secondary font-display text-2xl font-semibold text-foreground hover:bg-secondary/70"
             >
-              {k === "back" ? (
-                <Delete className="h-6 w-6" aria-hidden="true" />
-              ) : (
-                k
-              )}
+              {k === "back" ? <Delete className="h-6 w-6" aria-hidden="true" /> : k}
             </motion.button>
           ))}
         </div>

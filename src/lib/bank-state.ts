@@ -46,20 +46,98 @@ export type BankState = {
 const STORAGE_KEY = "sathi.bank.v1";
 
 const DEFAULT_CONTACTS: Contact[] = [
-  { id: "c1", name: "Priya Sharma", upi: "priya@okhdfc", phone: "9876500001", color: "oklch(0.78 0.10 65)" },
-  { id: "c2", name: "Arjun Verma", upi: "arjun.v@oksbi", phone: "9876500002", color: "oklch(0.72 0.09 240)" },
-  { id: "c3", name: "Meera Iyer", upi: "meera@okicici", phone: "9876500003", color: "oklch(0.72 0.11 20)" },
-  { id: "c4", name: "Rohan Das", upi: "rohan.das@okaxis", phone: "9876500004", color: "oklch(0.70 0.09 156)" },
-  { id: "c5", name: "Neha Kapoor", upi: "neha@okpaytm", phone: "9876500005", color: "oklch(0.74 0.11 300)" },
+  {
+    id: "c1",
+    name: "Priya Sharma",
+    upi: "priya@okhdfc",
+    phone: "9876500001",
+    color: "oklch(0.78 0.10 65)",
+  },
+  {
+    id: "c2",
+    name: "Arjun Verma",
+    upi: "arjun.v@oksbi",
+    phone: "9876500002",
+    color: "oklch(0.72 0.09 240)",
+  },
+  {
+    id: "c3",
+    name: "Meera Iyer",
+    upi: "meera@okicici",
+    phone: "9876500003",
+    color: "oklch(0.72 0.11 20)",
+  },
+  {
+    id: "c4",
+    name: "Rohan Das",
+    upi: "rohan.das@okaxis",
+    phone: "9876500004",
+    color: "oklch(0.70 0.09 156)",
+  },
+  {
+    id: "c5",
+    name: "Neha Kapoor",
+    upi: "neha@okpaytm",
+    phone: "9876500005",
+    color: "oklch(0.74 0.11 300)",
+  },
 ];
 
 const DEFAULT_TRANSACTIONS: Txn[] = [
-  { id: "t1", kind: "credit", amount: 42500, party: "Payroll — Acme Pvt Ltd", method: "bank", category: "Salary", ts: Date.now() - 86400000 * 2 },
-  { id: "t2", kind: "debit",  amount: 320,   party: "Priya Sharma", method: "upi", note: "Chai", ts: Date.now() - 86400000 * 1 },
-  { id: "t3", kind: "debit",  amount: 1499,  party: "Airtel Prepaid", method: "bill", category: "Mobile", ts: Date.now() - 86400000 * 3 },
-  { id: "t4", kind: "credit", amount: 500,   party: "Rohan Das", method: "upi", note: "Rickshaw", ts: Date.now() - 86400000 * 4 },
-  { id: "t5", kind: "debit",  amount: 2340,  party: "BSES Rajdhani", method: "bill", category: "Electricity", ts: Date.now() - 86400000 * 6 },
-  { id: "t6", kind: "debit",  amount: 899,   party: "Tata Sky", method: "bill", category: "DTH", ts: Date.now() - 86400000 * 8 },
+  {
+    id: "t1",
+    kind: "credit",
+    amount: 42500,
+    party: "Payroll — Acme Pvt Ltd",
+    method: "bank",
+    category: "Salary",
+    ts: Date.now() - 86400000 * 2,
+  },
+  {
+    id: "t2",
+    kind: "debit",
+    amount: 320,
+    party: "Priya Sharma",
+    method: "upi",
+    note: "Chai",
+    ts: Date.now() - 86400000 * 1,
+  },
+  {
+    id: "t3",
+    kind: "debit",
+    amount: 1499,
+    party: "Airtel Prepaid",
+    method: "bill",
+    category: "Mobile",
+    ts: Date.now() - 86400000 * 3,
+  },
+  {
+    id: "t4",
+    kind: "credit",
+    amount: 500,
+    party: "Rohan Das",
+    method: "upi",
+    note: "Rickshaw",
+    ts: Date.now() - 86400000 * 4,
+  },
+  {
+    id: "t5",
+    kind: "debit",
+    amount: 2340,
+    party: "BSES Rajdhani",
+    method: "bill",
+    category: "Electricity",
+    ts: Date.now() - 86400000 * 6,
+  },
+  {
+    id: "t6",
+    kind: "debit",
+    amount: 899,
+    party: "Tata Sky",
+    method: "bill",
+    category: "DTH",
+    ts: Date.now() - 86400000 * 8,
+  },
 ];
 
 const DEFAULT_STATE: BankState = {
@@ -111,7 +189,13 @@ export const bank = {
   reset() {
     save(DEFAULT_STATE);
   },
-  sendMoney(input: { recipientName: string; upiOrPhone?: string; amount: number; note?: string; method?: "upi" | "bank" }) {
+  sendMoney(input: {
+    recipientName: string;
+    upiOrPhone?: string;
+    amount: number;
+    note?: string;
+    method?: "upi" | "bank";
+  }) {
     const s = load();
     if (input.amount <= 0 || input.amount > s.balance) throw new Error("Invalid amount");
     const tx: Txn = {
@@ -143,7 +227,11 @@ export const bank = {
       category: input.category,
       ts: Date.now(),
     };
-    save({ ...s, balance: +(s.balance - input.amount).toFixed(2), transactions: [tx, ...s.transactions] });
+    save({
+      ...s,
+      balance: +(s.balance - input.amount).toFixed(2),
+      transactions: [tx, ...s.transactions],
+    });
     return tx;
   },
   toggleFreeze() {
@@ -189,5 +277,10 @@ export function maskCard(n: string): string {
 }
 
 export function initialsOf(name: string): string {
-  return name.split(/\s+/).map((p) => p[0]).slice(0, 2).join("").toUpperCase();
+  return name
+    .split(/\s+/)
+    .map((p) => p[0])
+    .slice(0, 2)
+    .join("")
+    .toUpperCase();
 }

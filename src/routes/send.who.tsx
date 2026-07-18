@@ -60,9 +60,7 @@ function SendWho() {
               >
                 <Plus className="h-10 w-10" strokeWidth={2.4} />
               </span>
-              <span className="font-display text-lg font-medium">
-                {t("send.addContact")}
-              </span>
+              <span className="font-display text-lg font-medium">{t("send.addContact")}</span>
             </button>
           </li>
         </ul>

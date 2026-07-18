@@ -83,17 +83,10 @@ export function MicButton() {
         </motion.button>
       </div>
       {listening ? (
-        <div
-          className="fixed inset-x-0 bottom-32 z-40 flex justify-center px-4"
-          aria-live="polite"
-        >
+        <div className="fixed inset-x-0 bottom-32 z-40 flex justify-center px-4" aria-live="polite">
           <div className="max-w-md rounded-2xl bg-foreground/90 px-5 py-3 text-center text-background shadow-lg">
-            <p className="text-xs uppercase tracking-wide opacity-70">
-              {t("home.listening")}
-            </p>
-            <p className="mt-1 font-display text-lg">
-              {transcript || t("voice.hint")}
-            </p>
+            <p className="text-xs uppercase tracking-wide opacity-70">{t("home.listening")}</p>
+            <p className="mt-1 font-display text-lg">{transcript || t("voice.hint")}</p>
           </div>
         </div>
       ) : null}

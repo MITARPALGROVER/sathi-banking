@@ -33,7 +33,8 @@ function AppShell() {
       >
         <ul className="mx-auto flex max-w-2xl items-stretch justify-between px-2 py-2">
           {TABS.map((t) => {
-            const active = t.to === "/app" ? loc.pathname === "/app" : loc.pathname.startsWith(t.to);
+            const active =
+              t.to === "/app" ? loc.pathname === "/app" : loc.pathname.startsWith(t.to);
             const Icon = t.icon;
             return (
               <li key={t.to} className="flex-1">

@@ -8,10 +8,7 @@ export function GlassCard({
   return (
     <div
       {...rest}
-      className={
-        "glass rounded-3xl shadow-[0_20px_60px_-24px_rgba(15,61,50,0.35)] " +
-        className
-      }
+      className={"glass rounded-3xl shadow-[0_20px_60px_-24px_rgba(15,61,50,0.35)] " + className}
     >
       {children}
     </div>

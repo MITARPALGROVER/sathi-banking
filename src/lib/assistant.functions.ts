@@ -62,7 +62,8 @@ export const askAssistant = createServerFn({ method: "POST" })
         },
       }),
       prefillSend: tool({
-        description: "Prefill the Send Money confirmation screen for a recipient (and amount if known). Does NOT send.",
+        description:
+          "Prefill the Send Money confirmation screen for a recipient (and amount if known). Does NOT send.",
         inputSchema: z.object({
           recipient: z.string(),
           amount: z.number().positive().nullable(),
@@ -74,7 +75,8 @@ export const askAssistant = createServerFn({ method: "POST" })
         },
       }),
       prefillBill: tool({
-        description: "Prefill the Bill Pay screen for a category (electricity, mobile, dth, water, gas).",
+        description:
+          "Prefill the Bill Pay screen for a category (electricity, mobile, dth, water, gas).",
         inputSchema: z.object({
           category: z.string(),
           spoken: z.string(),
@@ -85,7 +87,8 @@ export const askAssistant = createServerFn({ method: "POST" })
         },
       }),
       navigate: tool({
-        description: "Navigate to a screen. Allowed paths: /app, /app/send, /app/receive, /app/bills, /app/history, /app/cards, /app/profile, /help",
+        description:
+          "Navigate to a screen. Allowed paths: /app, /app/send, /app/receive, /app/bills, /app/history, /app/cards, /app/profile, /help",
         inputSchema: z.object({ to: z.string(), spoken: z.string() }),
         execute: async ({ to, spoken }) => {
           result = { kind: "navigate", to, spoken };
@@ -93,7 +96,8 @@ export const askAssistant = createServerFn({ method: "POST" })
         },
       }),
       explain: tool({
-        description: "Briefly explain a finance concept (UPI, IFSC, OTP, NEFT, etc.) in the user's language.",
+        description:
+          "Briefly explain a finance concept (UPI, IFSC, OTP, NEFT, etc.) in the user's language.",
         inputSchema: z.object({ topic: z.string(), spoken: z.string() }),
         execute: async ({ topic, spoken }) => {
           result = { kind: "explain", topic, spoken };
@@ -101,7 +105,8 @@ export const askAssistant = createServerFn({ method: "POST" })
         },
       }),
       clarify: tool({
-        description: "Ask a short clarifying question when the user's intent is ambiguous or a required detail is missing.",
+        description:
+          "Ask a short clarifying question when the user's intent is ambiguous or a required detail is missing.",
         inputSchema: z.object({ question: z.string() }),
         execute: async ({ question }) => {
           result = { kind: "clarify", question };

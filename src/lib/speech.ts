@@ -4,7 +4,6 @@ import { VOICE_LOCALE_MAP } from "@/i18n/config";
 /** Re-exported so callers can keep the old import name. */
 export const LOCALE_TO_BCP47: Record<Locale, string> = VOICE_LOCALE_MAP;
 
-
 export function speak(text: string, locale: Locale) {
   if (typeof window === "undefined") return;
   const synth = window.speechSynthesis;
@@ -20,9 +19,7 @@ export function speak(text: string, locale: Locale) {
   }
 }
 
-export function getSpeechRecognitionCtor():
-  | (new () => SpeechRecognitionLike)
-  | null {
+export function getSpeechRecognitionCtor(): (new () => SpeechRecognitionLike) | null {
   if (typeof window === "undefined") return null;
   const w = window as unknown as {
     SpeechRecognition?: new () => SpeechRecognitionLike;
@@ -40,9 +37,7 @@ export interface SpeechRecognitionLike extends EventTarget {
   abort: () => void;
   onresult:
     | ((e: {
-        results: ArrayLike<
-          ArrayLike<{ transcript: string }> & { isFinal: boolean }
-        >;
+        results: ArrayLike<ArrayLike<{ transcript: string }> & { isFinal: boolean }>;
       }) => void)
     | null;
   onerror: ((e: unknown) => void) | null;

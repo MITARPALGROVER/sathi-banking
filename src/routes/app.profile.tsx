@@ -31,7 +31,9 @@ function Profile() {
 
       <button
         type="button"
-        onClick={() => { bankApi.reset(); }}
+        onClick={() => {
+          bankApi.reset();
+        }}
         className="mt-4 flex w-full items-center gap-3 rounded-2xl bg-secondary/60 px-4 py-4 text-sm font-medium text-foreground/70"
       >
         <RefreshCcw className="h-5 w-5" /> Reset demo data
@@ -54,7 +56,10 @@ function Profile() {
 function Row({ to, icon, label }: { to: string; icon: React.ReactNode; label: string }) {
   return (
     <li>
-      <Link to={to} className="flex items-center gap-3 px-4 py-4 text-sm font-medium hover:bg-secondary">
+      <Link
+        to={to}
+        className="flex items-center gap-3 px-4 py-4 text-sm font-medium hover:bg-secondary"
+      >
         <span className="text-emerald">{icon}</span>
         {label}
       </Link>

@@ -12,8 +12,7 @@ export function AmbientOrb() {
       <div
         className="absolute -left-[15%] top-[35%] h-[60vh] w-[60vh] rounded-full opacity-70 blur-3xl"
         style={{
-          background:
-            "radial-gradient(closest-side, oklch(0.72 0.06 168 / 0.35), transparent 70%)",
+          background: "radial-gradient(closest-side, oklch(0.72 0.06 168 / 0.35), transparent 70%)",
         }}
       />
     </div>

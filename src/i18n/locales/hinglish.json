@@ -63,9 +63,18 @@
     "title": "Madad",
     "callSupport": "Support ko call karo",
     "faqs": [
-      { "q": "Paisa kaise bhejein?", "a": "Paisa Bhejo dabao, person choose karo, amount daalo, phir confirm karo." },
-      { "q": "Kya mera paisa safe hai?", "a": "Haan. Har transaction bank-grade security se hota hai aur bhejne se pehle do baar confirm hota hai." },
-      { "q": "Galti ho gayi to?", "a": "Paisa jaane se pehle confirmation screen aayega. Wahaan cancel kar sakte ho." },
+      {
+        "q": "Paisa kaise bhejein?",
+        "a": "Paisa Bhejo dabao, person choose karo, amount daalo, phir confirm karo."
+      },
+      {
+        "q": "Kya mera paisa safe hai?",
+        "a": "Haan. Har transaction bank-grade security se hota hai aur bhejne se pehle do baar confirm hota hai."
+      },
+      {
+        "q": "Galti ho gayi to?",
+        "a": "Paisa jaane se pehle confirmation screen aayega. Wahaan cancel kar sakte ho."
+      },
       { "q": "Kya main bol sakta hoon?", "a": "Haan. Golden mic dabao aur apni bhasha mein bolo." }
     ]
   },

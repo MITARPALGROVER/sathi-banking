@@ -6,14 +6,7 @@ import hi from "./locales/hi.json";
 import hinglish from "./locales/hinglish.json";
 
 /** India-scoped: 5 real languages + Hinglish (script variant, voice → hi-IN). */
-export const SUPPORTED_LOCALES = [
-  "en",
-  "hi",
-  "hinglish",
-  "pa",
-  "bn",
-  "ta",
-] as const;
+export const SUPPORTED_LOCALES = ["en", "hi", "hinglish", "pa", "bn", "ta"] as const;
 export type Locale = (typeof SUPPORTED_LOCALES)[number];
 export const DEFAULT_LOCALE: Locale = "en";
 

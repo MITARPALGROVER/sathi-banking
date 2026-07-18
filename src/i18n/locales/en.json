@@ -62,10 +62,22 @@
     "title": "Help",
     "callSupport": "Call Support",
     "faqs": [
-      { "q": "How do I send money?", "a": "Tap Send Money, choose a person, enter the amount, then confirm." },
-      { "q": "Is my money safe?", "a": "Yes. Every transaction uses bank-grade security and is confirmed twice before sending." },
-      { "q": "What if I make a mistake?", "a": "You will see a confirmation screen before any money leaves. You can cancel there." },
-      { "q": "Can I speak instead of typing?", "a": "Yes. Tap the gold mic button and speak in your language." }
+      {
+        "q": "How do I send money?",
+        "a": "Tap Send Money, choose a person, enter the amount, then confirm."
+      },
+      {
+        "q": "Is my money safe?",
+        "a": "Yes. Every transaction uses bank-grade security and is confirmed twice before sending."
+      },
+      {
+        "q": "What if I make a mistake?",
+        "a": "You will see a confirmation screen before any money leaves. You can cancel there."
+      },
+      {
+        "q": "Can I speak instead of typing?",
+        "a": "Yes. Tap the gold mic button and speak in your language."
+      }
     ]
   },
   "settings": {

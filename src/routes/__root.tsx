@@ -89,7 +89,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:title", content: "Sathi — Banking that speaks your language" },
       {
         property: "og:description",
-        content: "Calm, voice-friendly digital banking in English, Spanish, Hindi, Swahili and Filipino.",
+        content:
+          "Calm, voice-friendly digital banking in English, Spanish, Hindi, Swahili and Filipino.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -108,8 +109,6 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         rel: "stylesheet",
         href: "https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&display=swap",
       },
-
-
     ],
     scripts: [{ children: THEME_INIT }],
   }),

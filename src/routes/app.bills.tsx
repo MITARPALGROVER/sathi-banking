@@ -15,11 +15,21 @@ export const Route = createFileRoute("/app/bills")({
 
 type Category = { id: string; label: string; icon: typeof Lightbulb; providers: string[] };
 const CATS: Category[] = [
-  { id: "electricity", label: "Electricity", icon: Lightbulb, providers: ["BSES Rajdhani", "Tata Power", "Adani Electricity"] },
-  { id: "mobile",      label: "Mobile",      icon: Smartphone, providers: ["Airtel Prepaid", "Jio Prepaid", "Vi Postpaid"] },
-  { id: "dth",         label: "DTH",         icon: Tv,         providers: ["Tata Sky", "Airtel DTH", "Dish TV"] },
-  { id: "water",       label: "Water",       icon: Droplet,    providers: ["Delhi Jal Board", "MCGM Water"] },
-  { id: "gas",         label: "Gas",         icon: Flame,      providers: ["IGL", "MGL", "Indraprastha Gas"] },
+  {
+    id: "electricity",
+    label: "Electricity",
+    icon: Lightbulb,
+    providers: ["BSES Rajdhani", "Tata Power", "Adani Electricity"],
+  },
+  {
+    id: "mobile",
+    label: "Mobile",
+    icon: Smartphone,
+    providers: ["Airtel Prepaid", "Jio Prepaid", "Vi Postpaid"],
+  },
+  { id: "dth", label: "DTH", icon: Tv, providers: ["Tata Sky", "Airtel DTH", "Dish TV"] },
+  { id: "water", label: "Water", icon: Droplet, providers: ["Delhi Jal Board", "MCGM Water"] },
+  { id: "gas", label: "Gas", icon: Flame, providers: ["IGL", "MGL", "Indraprastha Gas"] },
 ];
 
 type Step = "cat" | "provider" | "amount" | "pin" | "done";
@@ -38,13 +48,23 @@ function Bills() {
       const p = sessionStorage.getItem("sathi.prefill.bill");
       if (!p) return;
       sessionStorage.removeItem("sathi.prefill.bill");
-      const m = CATS.find((c) => c.id === p.toLowerCase() || c.label.toLowerCase() === p.toLowerCase());
-      if (m) { setCat(m); setStep("provider"); }
-    } catch { /* no-op */ }
+      const m = CATS.find(
+        (c) => c.id === p.toLowerCase() || c.label.toLowerCase() === p.toLowerCase(),
+      );
+      if (m) {
+        setCat(m);
+        setStep("provider");
+      }
+    } catch {
+      /* no-op */
+    }
   }, []);
 
   function handlePin(pin: string) {
-    if (!bankApi.verifyPin(pin)) { setPinError("Wrong PIN. Try again."); return; }
+    if (!bankApi.verifyPin(pin)) {
+      setPinError("Wrong PIN. Try again.");
+      return;
+    }
     setPinError(null);
     if (!cat || !provider) return;
     bankApi.payBill({ provider, category: cat.label, amount });
@@ -56,7 +76,19 @@ function Bills() {
     <main className="mx-auto max-w-2xl px-5 pt-8">
       <button
         type="button"
-        onClick={() => (step === "cat" ? nav({ to: "/app" }) : setStep(step === "provider" ? "cat" : step === "amount" ? "provider" : step === "pin" ? "amount" : "cat"))}
+        onClick={() =>
+          step === "cat"
+            ? nav({ to: "/app" })
+            : setStep(
+                step === "provider"
+                  ? "cat"
+                  : step === "amount"
+                    ? "provider"
+                    : step === "pin"
+                      ? "amount"
+                      : "cat",
+              )
+        }
         className="text-sm text-foreground/60"
       >
         ← Back
@@ -70,7 +102,10 @@ function Bills() {
               <button
                 key={c.id}
                 type="button"
-                onClick={() => { setCat(c); setStep("provider"); }}
+                onClick={() => {
+                  setCat(c);
+                  setStep("provider");
+                }}
                 className="flex min-h-[120px] flex-col items-start justify-between rounded-2xl bg-secondary p-4 text-left transition-colors hover:bg-secondary/70"
               >
                 <span className="grid h-11 w-11 place-items-center rounded-full bg-emerald text-emerald-foreground">
@@ -91,7 +126,10 @@ function Bills() {
               <li key={p}>
                 <button
                   type="button"
-                  onClick={() => { setProvider(p); setStep("amount"); }}
+                  onClick={() => {
+                    setProvider(p);
+                    setStep("amount");
+                  }}
                   className="w-full px-4 py-4 text-left text-sm font-medium hover:bg-secondary"
                 >
                   {p}
@@ -104,7 +142,9 @@ function Bills() {
 
       {step === "amount" && cat && (
         <>
-          <p className="mt-6 text-[11px] font-medium uppercase tracking-[0.2em] text-foreground/55">{cat.label}</p>
+          <p className="mt-6 text-[11px] font-medium uppercase tracking-[0.2em] text-foreground/55">
+            {cat.label}
+          </p>
           <h1 className="mt-1 font-display text-2xl font-semibold">{provider}</h1>
           <div className="mt-8 flex items-baseline gap-2">
             <span className="font-display text-4xl text-foreground/60">₹</span>
@@ -133,7 +173,9 @@ function Bills() {
           <div className="mt-6 rounded-2xl bg-secondary p-5">
             <p className="text-xs text-foreground/55">Paying</p>
             <p className="mt-1 font-display text-3xl font-semibold">{formatINR(amount)}</p>
-            <p className="mt-2 text-sm">to <span className="font-medium">{provider}</span> · {cat.label}</p>
+            <p className="mt-2 text-sm">
+              to <span className="font-medium">{provider}</span> · {cat.label}
+            </p>
           </div>
           <p className="mt-8 text-center text-sm text-foreground/70">Enter UPI PIN</p>
           <p className="text-center text-xs text-foreground/40">Demo PIN: 1234</p>
@@ -143,13 +185,24 @@ function Bills() {
 
       {step === "done" && (
         <section className="mt-14 flex flex-col items-center text-center">
-          <motion.div initial={{ scale: 0.5, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={spring} className="grid h-24 w-24 place-items-center rounded-full bg-sage text-white confirm-ripple">
+          <motion.div
+            initial={{ scale: 0.5, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={spring}
+            className="grid h-24 w-24 place-items-center rounded-full bg-sage text-white confirm-ripple"
+          >
             <Check className="h-12 w-12" strokeWidth={3} />
           </motion.div>
-          <p className="mt-6 text-[11px] font-medium uppercase tracking-[0.22em] text-sage">Bill paid</p>
+          <p className="mt-6 text-[11px] font-medium uppercase tracking-[0.22em] text-sage">
+            Bill paid
+          </p>
           <h1 className="mt-2 font-display text-3xl font-semibold">{formatINR(amount)}</h1>
           <p className="mt-1 text-sm text-foreground/70">{provider}</p>
-          <button type="button" onClick={() => nav({ to: "/app" })} className="mt-10 w-full rounded-full bg-emerald py-4 text-sm font-medium text-emerald-foreground">
+          <button
+            type="button"
+            onClick={() => nav({ to: "/app" })}
+            className="mt-10 w-full rounded-full bg-emerald py-4 text-sm font-medium text-emerald-foreground"
+          >
             Done
           </button>
         </section>
