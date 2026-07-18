@@ -2,7 +2,7 @@ import { createServerFn } from "@tanstack/react-start";
 import { generateText, stepCountIs, tool } from "ai";
 import { z } from "zod";
 
-import { createLovableAiGatewayProvider } from "./ai-gateway.server";
+import { createLovableAiGatewayProvider, createAiProvider } from "./ai-gateway.server";
 
 export type AssistantAction =
   | { kind: "checkBalance"; spoken: string }
@@ -34,10 +34,17 @@ const askAssistantInput = z.object({
 export const askAssistant = createServerFn({ method: "POST" })
   .inputValidator((data: unknown) => askAssistantInput.parse(data))
   .handler(async ({ data }): Promise<AssistantAction> => {
-    const key = process.env.LOVABLE_API_KEY;
-    if (!key) throw new Error("Missing LOVABLE_API_KEY");
-    const gateway = createLovableAiGatewayProvider(key);
-    const model = gateway("google/gemini-3.5-flash");
+    const key = process.env.AI_API_KEY || process.env.LOVABLE_API_KEY || process.env.OPENAI_API_KEY;
+    if (!key) {
+      throw new Error(
+        "Missing AI API Key. Please configure AI_API_KEY, LOVABLE_API_KEY, or OPENAI_API_KEY in your environment variables.",
+      );
+    }
+    const baseUrl = process.env.AI_BASE_URL;
+    const modelName = process.env.AI_MODEL || "google/gemini-3.5-flash";
+
+    const gateway = createAiProvider(key, baseUrl);
+    const model = gateway(modelName);
 
     let result: AssistantAction | null = null;
 
