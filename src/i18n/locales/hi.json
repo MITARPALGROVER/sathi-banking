@@ -36,8 +36,26 @@
     "trustStrip": "आपका लेन-देन पूरी तरह सुरक्षित है।",
     "confirmSend": "पुष्टि करें और भेजें",
     "cancel": "रद्द करें",
-    "speak": "आप {{name}} को {{amount}} डॉलर भेज रहे हैं",
-    "amountLabel": "रक़म"
+    "speak": "आप {{name}} को {{amount}} रुपये भेज रहे हैं",
+    "amountLabel": "रक़म",
+    "choosePay": "चुनें कि आप भुगतान कैसे करना चाहते हैं।",
+    "mode": {
+      "contact": "संपर्क",
+      "upi": "UPI आईडी",
+      "phone": "फ़ोन",
+      "qr": "क्यूआर"
+    },
+    "placeholderUpi": "नाम@बैंक",
+    "placeholderPhone": "10-अंकों का फ़ोन",
+    "qrHint": "कैमरे को UPI क्यूआर कोड की ओर करें",
+    "qrMock": "मॉक स्कैनर — डेमो के लिए",
+    "sendTo": "इन्हें भेजें",
+    "available": "उपलब्ध",
+    "notePlaceholder": "कोई नोट जोड़ें (वैकल्पिक)",
+    "enterPin": "UPI पिन दर्ज करें",
+    "securityConfirm": "सुरक्षा पुष्टि",
+    "sentSuccess": "सफलतापूर्वक भेज दिया गया!",
+    "txnId": "लेनदेन आईडी"
   },
   "success": {
     "title": "{{name}} को ${{amount}} भेजे गए",
@@ -119,10 +137,32 @@
     "back": "वापस",
     "done": "हो गया",
     "continue": "जारी रखें",
+    "home": "होम",
     "send": "भेजें",
     "receive": "प्राप्त करें",
     "bills": "बिल भरें",
-    "history": "इतिहास"
+    "history": "इतिहास",
+    "cards": "कार्ड्स",
+    "profile": "प्रोफ़ाइल"
+  },
+  "receive": {
+    "title": "पैसे प्राप्त करें",
+    "subhead": "यह क्यूआर कोड दिखाएं — कोई भी UPI ऐप से भुगतान कर सकता है।",
+    "copyUpi": "UPI कॉपी करें",
+    "share": "साझा करें",
+    "account": "खाता",
+    "ifsc": "IFSC",
+    "shareText": "मुझे भुगतान करें: {{upi}}"
+  },
+  "history": {
+    "title": "इतिहास",
+    "searchPlaceholder": "नाम, श्रेणी या नोट से खोजें",
+    "empty": "कोई लेन-देन नहीं मिला।",
+    "filter": {
+      "all": "सभी",
+      "credit": "प्राप्त",
+      "debit": "भेजे गए"
+    }
   },
   "guide": {
     "step0": {

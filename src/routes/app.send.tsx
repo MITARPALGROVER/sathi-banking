@@ -2,11 +2,13 @@ import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { AtSign, Phone, ScanLine, Users, ChevronRight, Check } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 import { useBank, formatINR, initialsOf, bank as bankApi } from "@/lib/bank-state";
 import { PinPad } from "@/components/sathi/PinPad";
 import { speak } from "@/lib/speech";
 import { spring } from "@/lib/motion";
+import { getActiveLocale } from "@/i18n/config";
 
 export const Route = createFileRoute("/app/send")({
   head: () => ({ meta: [{ title: "Send money — Sathi" }] }),
@@ -16,6 +18,8 @@ export const Route = createFileRoute("/app/send")({
 type Step = "who" | "amount" | "pin" | "done";
 
 function SendMoney() {
+  const { t, i18n } = useTranslation();
+  const locale = getActiveLocale(i18n.language);
   const bank = useBank();
   const navigate = useNavigate();
   const [step, setStep] = useState<Step>("who");
@@ -75,7 +79,7 @@ function SendMoney() {
 
   function handlePin(pin: string) {
     if (!bankApi.verifyPin(pin)) {
-      setPinError("Wrong PIN. Try again.");
+      setPinError(t("send.wrongPin", "Wrong PIN. Try again."));
       return;
     }
     setPinError(null);
@@ -89,7 +93,12 @@ function SendMoney() {
     });
     setTxnId(tx.id);
     setStep("done");
-    speak(`Sent ${amount} rupees to ${recipient.name}`, "en");
+    speak(
+      t("success.speak", "Sent successfully. {{amount}} rupees to {{name}}")
+        .replace("{{amount}}", amount.toString())
+        .replace("{{name}}", recipient.name),
+      locale,
+    );
   }
 
   return (
@@ -103,20 +112,24 @@ function SendMoney() {
         }
         className="text-sm text-foreground/60 hover:text-foreground"
       >
-        ← Back
+        ← {t("common.back", "Back")}
       </button>
 
       {step === "who" && (
         <section className="mt-6">
-          <h1 className="font-display text-3xl font-semibold tracking-tight">Send money</h1>
-          <p className="mt-2 text-sm text-foreground/60">Choose how you want to pay.</p>
+          <h1 className="font-display text-3xl font-semibold tracking-tight">
+            {t("common.send", "Send money")}
+          </h1>
+          <p className="mt-2 text-sm text-foreground/60">
+            {t("send.choosePay", "Choose how you want to pay.")}
+          </p>
 
           <div className="mt-6 grid grid-cols-4 gap-2">
             {[
-              { k: "contact", label: "Contact", Icon: Users },
-              { k: "upi", label: "UPI ID", Icon: AtSign },
-              { k: "phone", label: "Phone", Icon: Phone },
-              { k: "qr", label: "QR", Icon: ScanLine },
+              { k: "contact", label: t("send.mode.contact", "Contact"), Icon: Users },
+              { k: "upi", label: t("send.mode.upi", "UPI ID"), Icon: AtSign },
+              { k: "phone", label: t("send.mode.phone", "Phone"), Icon: Phone },
+              { k: "qr", label: t("send.mode.qr", "QR"), Icon: ScanLine },
             ].map(({ k, label, Icon }) => (
               <button
                 key={k}
@@ -174,13 +187,19 @@ function SendMoney() {
             >
               <label className="block">
                 <span className="text-[11px] font-medium uppercase tracking-[0.2em] text-foreground/55">
-                  {mode === "upi" ? "UPI ID" : "Phone number"}
+                  {mode === "upi"
+                    ? t("send.mode.upi", "UPI ID")
+                    : t("send.mode.phone", "Phone number")}
                 </span>
                 <input
                   name="handle"
                   autoFocus
                   inputMode={mode === "phone" ? "numeric" : "text"}
-                  placeholder={mode === "upi" ? "name@bank" : "10-digit phone"}
+                  placeholder={
+                    mode === "upi"
+                      ? t("send.placeholderUpi", "name@bank")
+                      : t("send.placeholderPhone", "10-digit phone")
+                  }
                   className="mt-2 w-full rounded-2xl bg-secondary px-4 py-4 font-display text-lg focus:outline-none"
                 />
               </label>
@@ -188,7 +207,7 @@ function SendMoney() {
                 type="submit"
                 className="w-full rounded-full bg-emerald py-4 text-sm font-medium text-emerald-foreground"
               >
-                Continue
+                {t("common.continue", "Continue")}
               </button>
             </form>
           )}
@@ -196,14 +215,18 @@ function SendMoney() {
           {mode === "qr" && (
             <div className="mt-6 grid place-items-center rounded-3xl bg-secondary p-10 text-center">
               <ScanLine className="h-14 w-14 text-emerald" />
-              <p className="mt-4 text-sm font-medium">Point camera at a UPI QR</p>
-              <p className="mt-1 text-xs text-foreground/55">Mock scanner — for demo</p>
+              <p className="mt-4 text-sm font-medium">
+                {t("send.qrHint", "Point camera at a UPI QR")}
+              </p>
+              <p className="mt-1 text-xs text-foreground/55">
+                {t("send.qrMock", "Mock scanner — for demo")}
+              </p>
               <button
                 type="button"
                 onClick={() => pickContact(bank.contacts[0].id)}
                 className="mt-6 rounded-full bg-emerald px-5 py-2.5 text-xs font-medium text-emerald-foreground"
               >
-                Simulate scan
+                {t("send.simulateScan", "Simulate scan")}
               </button>
             </div>
           )}
@@ -213,7 +236,7 @@ function SendMoney() {
       {step === "amount" && recipient && (
         <section className="mt-6">
           <p className="text-[11px] font-medium uppercase tracking-[0.2em] text-foreground/55">
-            Paying
+            {t("send.paying", "Paying")}
           </p>
           <h1 className="mt-1 font-display text-2xl font-semibold">{recipient.name}</h1>
           <p className="text-xs text-foreground/55">{recipient.handle}</p>
@@ -221,7 +244,7 @@ function SendMoney() {
           <div className="mt-8">
             <label className="block">
               <span className="text-[11px] font-medium uppercase tracking-[0.2em] text-foreground/55">
-                Amount
+                {t("send.amountLabel", "Amount")}
               </span>
               <div className="mt-3 flex items-baseline gap-2">
                 <span className="font-display text-4xl text-foreground/60">₹</span>
@@ -251,12 +274,12 @@ function SendMoney() {
 
             <label className="mt-6 block">
               <span className="text-[11px] font-medium uppercase tracking-[0.2em] text-foreground/55">
-                Note (optional)
+                {t("send.noteLabel", "Note (optional)")}
               </span>
               <input
                 value={note}
                 onChange={(e) => setNote(e.target.value)}
-                placeholder="e.g. rent, chai"
+                placeholder={t("send.notePlaceholderText", "e.g. rent, chai")}
                 className="mt-2 w-full rounded-2xl bg-secondary px-4 py-3 text-sm focus:outline-none"
               />
             </label>
@@ -267,10 +290,10 @@ function SendMoney() {
               disabled={amount <= 0 || amount > bank.balance}
               className="mt-8 w-full rounded-full bg-emerald py-4 text-sm font-medium text-emerald-foreground disabled:opacity-40"
             >
-              Continue to confirm
+              {t("send.btnConfirm", "Continue to confirm")}
             </button>
-            <p className="mt-3 text-center text-xs text-foreground/50">
-              Balance: {formatINR(bank.balance)}
+            <p className="mt-3 text-center text-xs text-foreground/55">
+              {t("send.available", "Balance")}: {formatINR(bank.balance)}
             </p>
           </div>
         </section>
@@ -279,18 +302,22 @@ function SendMoney() {
       {step === "pin" && recipient && (
         <section className="mt-6">
           <p className="text-[11px] font-medium uppercase tracking-[0.2em] text-foreground/55">
-            Confirm payment
+            {t("send.step3", "Confirm payment")}
           </p>
           <div className="mt-2 rounded-2xl bg-secondary p-5">
-            <p className="text-xs text-foreground/55">Sending</p>
+            <p className="text-xs text-foreground/55">{t("send.sending", "Sending")}</p>
             <p className="mt-1 font-display text-3xl font-semibold">{formatINR(amount)}</p>
             <p className="mt-2 text-sm">
-              to <span className="font-medium">{recipient.name}</span>
+              {t("send.to", "to")} <span className="font-medium">{recipient.name}</span>
             </p>
             <p className="text-xs text-foreground/55">{recipient.handle}</p>
           </div>
-          <p className="mt-8 text-center text-sm text-foreground/70">Enter UPI PIN</p>
-          <p className="text-center text-xs text-foreground/40">Demo PIN: 1234</p>
+          <p className="mt-8 text-center text-sm text-foreground/70">
+            {t("send.enterPin", "Enter UPI PIN")}
+          </p>
+          <p className="text-center text-xs text-foreground/45">
+            {t("send.demoPin", "Demo PIN: 1234")}
+          </p>
           <PinPad length={4} onComplete={handlePin} error={pinError} />
         </section>
       )}
@@ -306,12 +333,16 @@ function SendMoney() {
             <Check className="h-12 w-12" strokeWidth={3} />
           </motion.div>
           <p className="mt-6 text-[11px] font-medium uppercase tracking-[0.22em] text-sage">
-            Payment successful
+            {t("send.sentSuccess", "Payment successful")}
           </p>
           <h1 className="mt-2 font-display text-3xl font-semibold">{formatINR(amount)}</h1>
-          <p className="mt-1 text-sm text-foreground/70">to {recipient.name}</p>
+          <p className="mt-1 text-sm text-foreground/70">
+            {t("send.to", "to")} {recipient.name}
+          </p>
           {txnId ? (
-            <p className="mt-3 font-mono text-[10px] text-foreground/40">TXN {txnId}</p>
+            <p className="mt-3 font-mono text-[10px] text-foreground/40">
+              {t("send.txnId", "Transaction ID")}: {txnId}
+            </p>
           ) : null}
           <div className="mt-10 flex w-full gap-3">
             <button
@@ -319,7 +350,7 @@ function SendMoney() {
               onClick={() => navigate({ to: "/app" })}
               className="flex-1 rounded-full bg-emerald py-4 text-sm font-medium text-emerald-foreground"
             >
-              Done
+              {t("common.done", "Done")}
             </button>
             <button
               type="button"
@@ -331,7 +362,7 @@ function SendMoney() {
               }}
               className="flex-1 rounded-full border border-foreground/15 py-4 text-sm font-medium text-foreground/70"
             >
-              Send again
+              {t("send.sendAgain", "Send again")}
             </button>
           </div>
         </section>

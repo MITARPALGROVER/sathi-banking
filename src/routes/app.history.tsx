@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
 import { ArrowUpRight, ArrowDownLeft, Search } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 import { useBank, formatINR } from "@/lib/bank-state";
 
@@ -12,6 +13,7 @@ export const Route = createFileRoute("/app/history")({
 type Filter = "all" | "credit" | "debit";
 
 function History() {
+  const { t } = useTranslation();
   const bank = useBank();
   const [filter, setFilter] = useState<Filter>("all");
   const [q, setQ] = useState("");
@@ -44,14 +46,16 @@ function History() {
 
   return (
     <main className="mx-auto max-w-2xl px-5 pt-8">
-      <h1 className="font-display text-3xl font-semibold tracking-tight">History</h1>
+      <h1 className="font-display text-3xl font-semibold tracking-tight">
+        {t("history.title", "History")}
+      </h1>
 
       <label className="mt-5 flex items-center gap-2 rounded-full bg-secondary px-4 py-3">
         <Search className="h-4 w-4 text-foreground/50" />
         <input
           value={q}
           onChange={(e) => setQ(e.target.value)}
-          placeholder="Search by name, category, note"
+          placeholder={t("history.searchPlaceholder", "Search by name, category, note")}
           className="w-full bg-transparent text-sm focus:outline-none"
         />
       </label>
@@ -69,14 +73,16 @@ function History() {
                 : "bg-secondary text-foreground/70")
             }
           >
-            {f}
+            {t(`history.filter.${f}`, f)}
           </button>
         ))}
       </div>
 
       <div className="mt-6 space-y-6">
         {grouped.length === 0 && (
-          <p className="text-sm text-foreground/60">No matching transactions.</p>
+          <p className="text-sm text-foreground/60">
+            {t("history.empty", "No matching transactions.")}
+          </p>
         )}
         {grouped.map(([date, list]) => (
           <section key={date}>

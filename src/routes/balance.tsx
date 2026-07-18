@@ -18,7 +18,7 @@ function Balance() {
   return (
     <PageTransition>
       <main className="mx-auto flex min-h-dvh max-w-2xl flex-col px-5 pb-40 pt-8">
-        <BackButton to="/home" />
+        <BackButton to="/app" />
 
         <section className="mt-10 rounded-3xl bg-emerald p-8 text-emerald-foreground shadow-[0_20px_50px_-24px_rgba(15,61,50,0.5)]">
           <p className="font-display text-base opacity-80">{t("balance.label")}</p>

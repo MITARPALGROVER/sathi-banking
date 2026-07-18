@@ -35,7 +35,6 @@ function AppHome() {
 
   // Guided Tour State
   const [tourStep, setTourStep] = useState<number | null>(null);
-  const [highlightRect, setHighlightRect] = useState<DOMRect | null>(null);
 
   const tourSteps = [
     {
@@ -135,24 +134,12 @@ function AppHome() {
   }, [tourStep]);
 
   useEffect(() => {
-    if (tourStep === null) {
-      setHighlightRect(null);
-      return;
-    }
+    if (tourStep === null) return;
     const step = tourSteps[tourStep];
-    if (!step.targetId) {
-      setHighlightRect(null);
-      return;
-    }
+    if (!step.targetId) return;
     const el = document.getElementById(step.targetId);
     if (el) {
       el.scrollIntoView({ block: "center", behavior: "smooth" });
-      const timer = setTimeout(() => {
-        setHighlightRect(el.getBoundingClientRect());
-      }, 550);
-      return () => clearTimeout(timer);
-    } else {
-      setHighlightRect(null);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [tourStep]);
@@ -166,6 +153,21 @@ function AppHome() {
       return () => clearTimeout(timer);
     }
   }, []);
+
+  useEffect(() => {
+    if (typeof document !== "undefined") {
+      if (tourStep !== null) {
+        document.documentElement.setAttribute("data-tour-step", tourStep.toString());
+      } else {
+        document.documentElement.removeAttribute("data-tour-step");
+      }
+    }
+    return () => {
+      if (typeof document !== "undefined") {
+        document.documentElement.removeAttribute("data-tour-step");
+      }
+    };
+  }, [tourStep]);
 
   const getOverlayAlignmentClass = (step: number) => {
     switch (step) {
@@ -340,27 +342,10 @@ function AppHome() {
       {tourStep !== null && (
         <div
           className={
-            "fixed inset-0 z-[100] flex flex-col items-center px-4 transition-all duration-300 " +
-            getOverlayAlignmentClass(tourStep) +
-            " " +
-            (highlightRect ? "bg-transparent" : "bg-charcoal/65 backdrop-blur-sm")
+            "fixed inset-0 z-[100] flex flex-col items-center px-4 transition-all duration-300 bg-charcoal/65 backdrop-blur-sm " +
+            getOverlayAlignmentClass(tourStep)
           }
         >
-          {/* Spotlight Highlight Indicator */}
-          {highlightRect && (
-            <div
-              className="fixed pointer-events-none rounded-[28px] border-[3.5px] border-gold confirm-ripple"
-              style={{
-                top: `${highlightRect.top - 8}px`,
-                left: `${highlightRect.left - 8}px`,
-                width: `${highlightRect.width + 16}px`,
-                height: `${highlightRect.height + 16}px`,
-                boxShadow: "0 0 20px rgba(212, 169, 96, 0.6), 0 0 0 9999px rgba(35, 35, 31, 0.75)",
-                zIndex: 90,
-              }}
-            />
-          )}
-
           {/* Sathi Guide Bubble */}
           <div className="relative z-[110] w-full max-w-md rounded-3xl bg-background p-6 shadow-2xl border border-foreground/10 flex flex-col gap-4 animate-in fade-in zoom-in-95 duration-200">
             <div className="flex items-center gap-3">

@@ -38,7 +38,25 @@
     "confirmSend": "Confirm aur Bhejo",
     "cancel": "Cancel",
     "speak": "Aap {{name}} ko {{amount}} rupay bhej rahe hain",
-    "amountLabel": "Amount"
+    "amountLabel": "Amount",
+    "choosePay": "Chunye aap kaise pay karna chahte hain.",
+    "mode": {
+      "contact": "Contact",
+      "upi": "UPI ID",
+      "phone": "Phone",
+      "qr": "QR"
+    },
+    "placeholderUpi": "name@bank",
+    "placeholderPhone": "10-digit phone number",
+    "qrHint": "Camera ko UPI QR code par point karein",
+    "qrMock": "Mock scanner — demo ke liye",
+    "sendTo": "Bhejo inhe",
+    "available": "Available",
+    "notePlaceholder": "Note likhein (optional)",
+    "enterPin": "UPI PIN daalein",
+    "securityConfirm": "Security confirmation",
+    "sentSuccess": "Safaltapoorvak bhej diya gaya!",
+    "txnId": "Transaction ID"
   },
   "success": {
     "title": "{{name}} ko ₹{{amount}} bhej diye",
@@ -120,10 +138,32 @@
     "back": "Wapas",
     "done": "Ho gaya",
     "continue": "Continue",
+    "home": "Home",
     "send": "Bhejo",
     "receive": "Receive",
     "bills": "Bills",
-    "history": "History"
+    "history": "History",
+    "cards": "Cards",
+    "profile": "Profile"
+  },
+  "receive": {
+    "title": "Paise receive karein",
+    "subhead": "Yeh QR code dikhayein — koi bhi UPI app se aapko pay kar sakta hai.",
+    "copyUpi": "UPI copy karein",
+    "share": "Share",
+    "account": "Account",
+    "ifsc": "IFSC",
+    "shareText": "Mujhe pay karein: {{upi}}"
+  },
+  "history": {
+    "title": "History",
+    "searchPlaceholder": "Name, category ya note se search karein",
+    "empty": "Koi transactions nahi mile.",
+    "filter": {
+      "all": "all",
+      "credit": "received",
+      "debit": "sent"
+    }
   },
   "guide": {
     "step0": {

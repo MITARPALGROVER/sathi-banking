@@ -36,8 +36,26 @@
     "trustStrip": "Your transaction is protected end-to-end.",
     "confirmSend": "Confirm & Send",
     "cancel": "Cancel",
-    "speak": "You are sending {{amount}} dollars to {{name}}",
-    "amountLabel": "Amount"
+    "speak": "You are sending {{amount}} rupees to {{name}}",
+    "amountLabel": "Amount",
+    "choosePay": "Choose how you want to pay.",
+    "mode": {
+      "contact": "Contact",
+      "upi": "UPI ID",
+      "phone": "Phone",
+      "qr": "QR"
+    },
+    "placeholderUpi": "name@bank",
+    "placeholderPhone": "10-digit phone",
+    "qrHint": "Point camera at a UPI QR",
+    "qrMock": "Mock scanner — for demo",
+    "sendTo": "Send to",
+    "available": "Available",
+    "notePlaceholder": "Add a note (optional)",
+    "enterPin": "Enter UPI PIN",
+    "securityConfirm": "Security confirmation",
+    "sentSuccess": "Sent successfully!",
+    "txnId": "Transaction ID"
   },
   "success": {
     "title": "Sent ${{amount}} to {{name}}",
@@ -122,10 +140,32 @@
     "back": "Back",
     "done": "Done",
     "continue": "Continue",
+    "home": "Home",
     "send": "Send",
     "receive": "Receive",
     "bills": "Bills",
-    "history": "History"
+    "history": "History",
+    "cards": "Cards",
+    "profile": "Profile"
+  },
+  "receive": {
+    "title": "Receive money",
+    "subhead": "Show this QR — anyone with a UPI app can pay you.",
+    "copyUpi": "Copy UPI",
+    "share": "Share",
+    "account": "Account",
+    "ifsc": "IFSC",
+    "shareText": "Pay me at {{upi}}"
+  },
+  "history": {
+    "title": "History",
+    "searchPlaceholder": "Search by name, category, note",
+    "empty": "No matching transactions.",
+    "filter": {
+      "all": "all",
+      "credit": "received",
+      "debit": "sent"
+    }
   },
   "guide": {
     "step0": {

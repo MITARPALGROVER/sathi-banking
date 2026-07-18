@@ -28,7 +28,7 @@ function Help() {
   return (
     <PageTransition>
       <main className="mx-auto flex min-h-dvh max-w-2xl flex-col px-5 pb-40 pt-8">
-        <BackButton to="/home" />
+        <BackButton to="/app" />
         <h1 className="mt-8 font-display text-3xl font-bold tracking-tight text-foreground">
           {t("help.title")}
         </h1>

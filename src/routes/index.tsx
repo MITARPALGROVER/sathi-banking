@@ -54,8 +54,8 @@ function Landing() {
         className="pointer-events-none absolute -left-[6vw] top-[14vh] z-0 select-none"
       >
         <span
-          className="block font-display font-bold leading-[0.85] tracking-[-0.05em] text-emerald"
-          style={{ fontSize: "clamp(180px, 32vw, 520px)" }}
+          className="block whitespace-nowrap font-display font-bold leading-[0.85] tracking-[-0.05em] text-emerald"
+          style={{ fontSize: "clamp(120px, 28vw, 520px)" }}
         >
           सुरक्षित
         </span>

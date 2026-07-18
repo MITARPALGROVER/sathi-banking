@@ -86,7 +86,7 @@ function SendConfirm() {
           {t("send.confirmSend")}
         </button>
         <Link
-          to="/home"
+          to="/app"
           className="mt-3 text-center font-display text-base text-muted-foreground underline underline-offset-4"
         >
           {t("send.cancel")}

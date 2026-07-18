@@ -54,7 +54,7 @@ function Success() {
         {t("success.title", { amount, name })}
       </h1>
       <Link
-        to="/home"
+        to="/app"
         className="mt-10 rounded-2xl bg-emerald px-8 py-5 font-display text-lg font-semibold text-emerald-foreground"
       >
         {t("success.backHome")}

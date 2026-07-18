@@ -24,7 +24,7 @@ function SendWho() {
     <PageTransition>
       <main className="mx-auto flex min-h-dvh max-w-2xl flex-col px-5 pb-16 pt-8 sm:px-8">
         <div className="flex items-center justify-between">
-          <BackButton to="/home" />
+          <BackButton to="/app" />
           <ProgressDots step={1} />
           <span className="w-24" aria-hidden="true" />
         </div>

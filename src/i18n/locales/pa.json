@@ -37,7 +37,25 @@
     "confirmSend": "ਪੁਸ਼ਟੀ ਕਰੋ ਅਤੇ ਭੇਜੋ",
     "cancel": "ਰੱਦ ਕਰੋ",
     "speak": "ਤੁਸੀਂ {{name}} ਨੂੰ {{amount}} ਰੁਪਏ ਭੇਜ ਰਹੇ ਹੋ",
-    "amountLabel": "ਰਕਮ"
+    "amountLabel": "ਰਕਮ",
+    "choosePay": "ਚੁਣੋ ਕਿ ਤੁਸੀਂ ਭੁਗਤਾਨ ਕਿਵੇਂ ਕਰਨਾ ਚਾਹੁੰਦੇ ਹੋ।",
+    "mode": {
+      "contact": "ਸੰਪਰਕ",
+      "upi": "UPI ਆਈਡੀ",
+      "phone": "ਫ਼ੋਨ",
+      "qr": "ਕਿਊਆਰ"
+    },
+    "placeholderUpi": "ਨਾਮ@ਬੈਂਕ",
+    "placeholderPhone": "10-ਅੰਕਾਂ ਦਾ ਫ਼ੋਨ",
+    "qrHint": "ਕੈਮਰੇ ਨੂੰ UPI ਕਿਊਆਰ ਕੋਡ ਵੱਲ ਕਰੋ",
+    "qrMock": "ਮੌਕ ਸਕੈਨਰ — ਡੈਮੋ ਲਈ",
+    "sendTo": "ਇਹਨਾਂ ਨੂੰ ਭੇਜੋ",
+    "available": "ਮੌਜੂਦਾ",
+    "notePlaceholder": "ਕੋਈ ਨੋਟ ਲਿਖੋ (ਵੈਕਲਪਿਕ)",
+    "enterPin": "UPI ਪਿੰਨ ਦਰਜ ਕਰੋ",
+    "securityConfirm": "ਸੁਰੱਖਿਆ ਪੁਸ਼ਟੀ",
+    "sentSuccess": "ਸਫ਼ਲਤਾਪੂਰਵਕ ਭੇਜਿਆ ਗਿਆ!",
+    "txnId": "ਟ੍ਰਾਂਜੈਕਸ਼ਨ ਆਈਡੀ"
   },
   "success": {
     "title": "{{name}} ਨੂੰ ₹{{amount}} ਭੇਜੇ ਗਏ",
@@ -122,10 +140,32 @@
     "back": "ਵਾਪਸ",
     "done": "ਹੋ ਗਿਆ",
     "continue": "ਜਾਰੀ ਰੱਖੋ",
+    "home": "ਹੋਮ",
     "send": "ਭੇਜੋ",
     "receive": "ਪ੍ਰਾਪਤ ਕਰੋ",
     "bills": "ਬਿੱਲ",
-    "history": "ਇਤਿਹਾਸ"
+    "history": "ਇਤਿਹਾਸ",
+    "cards": "ਕਾਰਡ",
+    "profile": "ਪ੍ਰੋਫਾਈਲ"
+  },
+  "receive": {
+    "title": "ਪੈਸੇ ਪ੍ਰਾਪਤ ਕਰੋ",
+    "subhead": "ਇਹ ਕਿਊਆਰ ਕੋਡ ਦਿਖਾਓ — ਕੋਈ ਵੀ UPI ਐਪ ਤੋਂ ਭੁਗਤਾਨ ਕਰ ਸਕਦਾ ਹੈ।",
+    "copyUpi": "UPI ਕਾਪੀ ਕਰੋ",
+    "share": "ਸਾਂਝਾ ਕਰੋ",
+    "account": "ਖਾਤਾ",
+    "ifsc": "IFSC",
+    "shareText": "ਮੈਨੂੰ ਭੁਗਤਾਨ ਕਰੋ: {{upi}}"
+  },
+  "history": {
+    "title": "ਇਤਿਹਾਸ",
+    "searchPlaceholder": "ਨਾਮ, ਸ਼੍ਰੇਣੀ ਜਾਂ ਨੋਟ ਦੁਆਰਾ ਖੋਜੋ",
+    "empty": "ਕੋਈ ਮੇਲ ਖਾਂਦਾ ਲੈਣ-ਦੇਣ ਨਹੀਂ ਮਿਲਿਆ।",
+    "filter": {
+      "all": "ਸਭ",
+      "credit": "ਪ੍ਰਾਪਤ",
+      "debit": "ਭੇਜੇ ਗਏ"
+    }
   },
   "guide": {
     "step0": {
