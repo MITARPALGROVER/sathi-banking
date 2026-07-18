@@ -1,0 +1,87 @@
+{
+  "app": { "name": "Sathi", "tagline": "Aapki bhasha mein banking" },
+  "onboarding": {
+    "headline": "Banking that speaks your",
+    "headlineAccent": "language.",
+    "subhead": "Shaant, saaf, voice-friendly paisa — sabke liye. Bhejo, lo, samjho — bina shor ke.",
+    "chooseLanguage": "Apni bhasha chuno",
+    "getStarted": "Shuru karo"
+  },
+  "home": {
+    "greeting": "Namaste, {{name}}",
+    "balanceLabel": "Available balance",
+    "quickActions": "Kya karna chahenge?",
+    "tapToSpeak": "Dabao aur bolo",
+    "listening": "Sun raha hoon…",
+    "settings": "Settings"
+  },
+  "tiles": {
+    "send": "Paisa Bhejo",
+    "sendSub": "Kisi ko bhejo",
+    "balance": "Balance",
+    "balanceSub": "Activity dekho",
+    "bill": "Bill Bharo",
+    "billSub": "Utilities aur",
+    "help": "Madad",
+    "helpSub": "Hum yahaan hain"
+  },
+  "back": "Wapas",
+  "send": {
+    "step1": "Kise bhejna hai?",
+    "step2": "Kitna?",
+    "step3": "Confirm karo",
+    "addContact": "Naya jodo",
+    "enterPhone": "Phone ya username daalein",
+    "save": "Contact save karo",
+    "quickAmount": "Quick amounts",
+    "trustStrip": "Aapka transaction poori tarah safe hai.",
+    "confirmSend": "Confirm aur Bhejo",
+    "cancel": "Cancel",
+    "speak": "Aap {{name}} ko {{amount}} rupay bhej rahe hain",
+    "amountLabel": "Amount"
+  },
+  "success": {
+    "title": "{{name}} ko ₹{{amount}} bhej diye",
+    "speak": "Safaltapoorvak bhej diya. {{amount}} rupay {{name}} ko",
+    "backHome": "Home par wapas"
+  },
+  "balance": {
+    "title": "Balance",
+    "label": "Available balance",
+    "recent": "Recent activity",
+    "credit": "Aaya",
+    "debit": "Bheja"
+  },
+  "bills": {
+    "title": "Bill Bharo",
+    "electricity": "Bijli",
+    "water": "Paani",
+    "mobile": "Mobile recharge",
+    "gas": "Gas"
+  },
+  "help": {
+    "title": "Madad",
+    "callSupport": "Support ko call karo",
+    "faqs": [
+      { "q": "Paisa kaise bhejein?", "a": "Paisa Bhejo dabao, person choose karo, amount daalo, phir confirm karo." },
+      { "q": "Kya mera paisa safe hai?", "a": "Haan. Har transaction bank-grade security se hota hai aur bhejne se pehle do baar confirm hota hai." },
+      { "q": "Galti ho gayi to?", "a": "Paisa jaane se pehle confirmation screen aayega. Wahaan cancel kar sakte ho." },
+      { "q": "Kya main bol sakta hoon?", "a": "Haan. Golden mic dabao aur apni bhasha mein bolo." }
+    ]
+  },
+  "settings": {
+    "title": "Settings",
+    "fontSize": "Text size",
+    "smaller": "A",
+    "larger": "A",
+    "theme": "Appearance",
+    "themeLight": "Light",
+    "themeDark": "Dark",
+    "language": "Bhasha"
+  },
+  "voice": {
+    "unsupported": "Is device par voice available nahi hai",
+    "tryAgain": "Maaf kijiye, samajh nahi aaya",
+    "hint": "Bolo: \"paisa bhejo\", \"balance dikhao\", \"madad\""
+  }
+}

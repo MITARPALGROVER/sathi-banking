@@ -1,0 +1,194 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+/*
+ * Sathi — Design System v2 "Apple-tier warmth"
+ * Light-first. Dark mode via [data-theme="dark"] on <html>.
+ */
+
+@theme inline {
+  /* Radius — 20-24px, no hard edges */
+  --radius: 1.25rem;
+  --radius-sm: 0.75rem;
+  --radius-md: 1rem;
+  --radius-lg: 1.25rem;
+  --radius-xl: 1.5rem;
+  --radius-2xl: 1.75rem;
+  --radius-3xl: 2rem;
+
+  /* Fonts — v3 pairing: geometric sans display + Inter body + italic serif accent */
+  --font-display: "General Sans", "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-body: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-accent: "Fraunces", ui-serif, Georgia, serif;
+  --font-serif: var(--font-accent);
+  --font-sans: var(--font-body);
+
+
+
+  /* Sathi v2 semantic palette */
+  --color-ivory: var(--ivory);
+  --color-emerald: var(--emerald);
+  --color-emerald-foreground: var(--emerald-foreground);
+  --color-gold: var(--gold);
+  --color-gold-foreground: var(--gold-foreground);
+  --color-charcoal: var(--charcoal);
+  --color-sage: var(--sage);
+  --color-brick: var(--brick);
+  --color-panel: var(--panel);
+
+  /* Shadcn-compatible aliases */
+  --color-background: var(--ivory);
+  --color-foreground: var(--charcoal);
+  --color-card: var(--panel);
+  --color-card-foreground: var(--charcoal);
+  --color-popover: var(--panel);
+  --color-popover-foreground: var(--charcoal);
+  --color-primary: var(--emerald);
+  --color-primary-foreground: var(--emerald-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--charcoal);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--gold);
+  --color-accent-foreground: var(--gold-foreground);
+  --color-destructive: var(--brick);
+  --color-destructive-foreground: oklch(0.98 0.01 80);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--emerald);
+  --color-ring-offset-background: var(--ivory);
+}
+
+/* Light (default) */
+:root {
+  --ivory: oklch(0.961 0.011 90);           /* #F5F3EC */
+  --charcoal: oklch(0.243 0.008 90);        /* #23231F */
+  --emerald: oklch(0.288 0.041 168);        /* #16342B */
+  --emerald-foreground: oklch(0.972 0.017 88);
+  --gold: oklch(0.755 0.108 78);            /* #D4A960 */
+  --gold-foreground: oklch(0.243 0.008 90);
+  --sage: oklch(0.658 0.052 142);           /* #7A9B76 */
+  --brick: oklch(0.548 0.128 40);           /* #B5533C */
+
+  --panel: oklch(0.982 0.010 88);
+
+  --secondary: oklch(0.935 0.020 88);
+  --muted: oklch(0.935 0.020 88);
+  --muted-foreground: oklch(0.46 0.015 80);
+  --border: oklch(0.88 0.020 85);
+  --input: oklch(0.88 0.020 85);
+
+  /* Glass — light: white wash for legibility over gradient */
+  --glass-bg: rgba(255, 255, 255, 0.55);
+  --glass-border: rgba(15, 61, 50, 0.12);
+}
+
+/* Dark */
+[data-theme="dark"] {
+  --ivory: oklch(0.232 0.028 165);          /* #14231F */
+  --charcoal: oklch(0.955 0.015 88);        /* #F2EFE6 */
+  --emerald: oklch(0.552 0.075 165);
+  --emerald-foreground: oklch(0.972 0.017 88);
+  --gold: oklch(0.792 0.115 78);
+  --gold-foreground: oklch(0.18 0.010 90);
+
+  --panel: oklch(0.278 0.028 165);          /* #1C2F29 */
+  --secondary: oklch(0.30 0.028 165);
+  --muted: oklch(0.30 0.028 165);
+  --muted-foreground: oklch(0.72 0.015 88);
+  --border: oklch(0.36 0.028 165);
+  --input: oklch(0.36 0.028 165);
+
+  /* Glass — dark: subtle dark wash */
+  --glass-bg: rgba(28, 47, 41, 0.55);
+  --glass-border: rgba(255, 255, 255, 0.10);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  html {
+    font-family: var(--font-body);
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    letter-spacing: -0.015em;
+  }
+
+  /* Focus ring — 3px emerald, offset 2px, everywhere */
+  a:focus-visible,
+  button:focus-visible,
+  [role="button"]:focus-visible,
+  input:focus-visible,
+  select:focus-visible,
+  textarea:focus-visible,
+  summary:focus-visible,
+  [tabindex]:not([tabindex="-1"]):focus-visible {
+    outline: 3px solid var(--color-emerald);
+    outline-offset: 2px;
+    border-radius: var(--radius-lg);
+  }
+}
+
+/* Signature glass panel — used sparingly */
+@utility glass {
+  background: var(--glass-bg);
+  backdrop-filter: blur(24px) saturate(140%);
+  border: 1px solid var(--glass-border);
+}
+
+/* Ambient breathing pulse on the mic — spring-like ease */
+@utility mic-pulse {
+  animation: sathi-pulse 3s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+@utility confirm-ripple {
+  animation: sathi-ripple 900ms ease-out forwards;
+}
+
+@keyframes sathi-pulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 oklch(0.755 0.108 78 / 0.5),
+                0 20px 40px -18px oklch(0.755 0.108 78 / 0.6);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 0 0 22px oklch(0.755 0.108 78 / 0),
+                0 20px 40px -18px oklch(0.755 0.108 78 / 0.6);
+    transform: scale(1.04);
+  }
+}
+
+@keyframes sathi-ripple {
+  0%   { box-shadow: 0 0 0 0 oklch(0.658 0.052 142 / 0.55); }
+  100% { box-shadow: 0 0 0 44px oklch(0.658 0.052 142 / 0); }
+}
+
+/* Reduced motion — kill everything */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}

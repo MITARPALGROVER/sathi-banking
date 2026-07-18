@@ -1,0 +1,86 @@
+{
+  "app": { "name": "Sathi", "tagline": "Banking that speaks your language" },
+  "onboarding": {
+    "headline": "Banking that speaks your language",
+    "subhead": "Calm, clear, voice-friendly money — for everyone.",
+    "chooseLanguage": "Choose your language",
+    "getStarted": "Get Started"
+  },
+  "home": {
+    "greeting": "Hello, {{name}}",
+    "balanceLabel": "Available balance",
+    "quickActions": "What would you like to do?",
+    "tapToSpeak": "Tap and speak",
+    "listening": "Listening…",
+    "settings": "Settings"
+  },
+  "tiles": {
+    "send": "Send Money",
+    "sendSub": "Pay a person",
+    "balance": "Balance",
+    "balanceSub": "View activity",
+    "bill": "Pay Bills",
+    "billSub": "Utilities & more",
+    "help": "Help",
+    "helpSub": "We're here"
+  },
+  "back": "Back",
+  "send": {
+    "step1": "Who are you paying?",
+    "step2": "How much?",
+    "step3": "Please confirm",
+    "addContact": "Add new",
+    "enterPhone": "Enter phone or username",
+    "save": "Save contact",
+    "quickAmount": "Quick amounts",
+    "trustStrip": "Your transaction is protected end-to-end.",
+    "confirmSend": "Confirm & Send",
+    "cancel": "Cancel",
+    "speak": "You are sending {{amount}} dollars to {{name}}",
+    "amountLabel": "Amount"
+  },
+  "success": {
+    "title": "Sent ${{amount}} to {{name}}",
+    "speak": "Sent successfully. {{amount}} dollars to {{name}}",
+    "backHome": "Back to Home"
+  },
+  "balance": {
+    "title": "Balance",
+    "label": "Available balance",
+    "recent": "Recent activity",
+    "credit": "Received",
+    "debit": "Sent"
+  },
+  "bills": {
+    "title": "Pay Bills",
+    "electricity": "Electricity",
+    "water": "Water",
+    "mobile": "Mobile top-up",
+    "gas": "Gas"
+  },
+  "help": {
+    "title": "Help",
+    "callSupport": "Call Support",
+    "faqs": [
+      { "q": "How do I send money?", "a": "Tap Send Money, choose a person, enter the amount, then confirm." },
+      { "q": "Is my money safe?", "a": "Yes. Every transaction uses bank-grade security and is confirmed twice before sending." },
+      { "q": "What if I make a mistake?", "a": "You will see a confirmation screen before any money leaves. You can cancel there." },
+      { "q": "Can I speak instead of typing?", "a": "Yes. Tap the gold mic button and speak in your language." }
+    ]
+  },
+  "settings": {
+    "title": "Settings",
+    "fontSize": "Text size",
+    "smaller": "A",
+    "larger": "A",
+    "theme": "Appearance",
+    "themeLight": "Light",
+    "themeDark": "Dark",
+    "language": "Language"
+  },
+  "voice": {
+    "unsupported": "Voice is not available on this device",
+    "tryAgain": "Sorry, I didn't catch that",
+    "hint": "Try: \"send money\", \"show balance\", \"help\""
+  }
+}
