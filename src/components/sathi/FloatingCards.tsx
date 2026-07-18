@@ -12,7 +12,8 @@ export function FloatingCards() {
         transition={{ ...spring, delay: 0.2 }}
         className="absolute left-6 top-16 h-56 w-[22rem] rounded-3xl p-6 text-white shadow-2xl"
         style={{
-          background: "linear-gradient(135deg, oklch(0.30 0.045 168), oklch(0.24 0.03 168))",
+          background:
+            "linear-gradient(135deg, oklch(0.42 0.14 165), oklch(0.26 0.09 175) 60%, oklch(0.50 0.16 155))",
           transformOrigin: "center",
         }}
       >

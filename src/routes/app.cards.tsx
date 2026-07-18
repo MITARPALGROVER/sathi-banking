@@ -31,7 +31,8 @@ function Cards() {
           (card.frozen ? "grayscale" : "")
         }
         style={{
-          background: "linear-gradient(135deg, oklch(0.30 0.045 168), oklch(0.20 0.03 168))",
+          background:
+            "linear-gradient(135deg, oklch(0.42 0.14 165), oklch(0.26 0.09 175) 60%, oklch(0.50 0.16 155))",
         }}
       >
         <div className="flex items-center justify-between">

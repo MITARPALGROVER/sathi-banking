@@ -46,15 +46,15 @@ function AppHome() {
       </header>
 
       {/* Signature glass balance card over an emerald gradient */}
-      <div className="relative mt-6 overflow-hidden rounded-[28px] p-1">
+      <div className="relative mt-6 overflow-hidden rounded-[28px] p-[1.5px] shadow-[0_12px_30px_-10px_rgba(22,52,43,0.3)]">
         <div
           className="absolute inset-0"
           style={{
             background:
-              "linear-gradient(140deg, oklch(0.32 0.045 168), oklch(0.24 0.03 168) 60%, oklch(0.36 0.04 168))",
+              "linear-gradient(135deg, oklch(0.42 0.14 165), oklch(0.26 0.09 175) 60%, oklch(0.50 0.16 155))",
           }}
         />
-        <div className="glass relative rounded-[24px] p-6 text-white">
+        <div className="relative rounded-[24px] bg-white/12 border border-white/20 p-6 text-white backdrop-blur-xl">
           <p className="text-[11px] font-medium uppercase tracking-[0.22em] text-white/70">
             {t("home.balanceLabel")}
           </p>
