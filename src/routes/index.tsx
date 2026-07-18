@@ -99,7 +99,7 @@ function Landing() {
           <button
             type="button"
             onClick={onStart}
-            className="inline-flex items-center gap-1.5 rounded-full bg-emerald px-4 py-2 text-[12px] font-medium text-emerald-foreground shadow-sm hover:-translate-y-0.5 transition-transform"
+            className="hidden min-[400px]:inline-flex items-center gap-1.5 rounded-full bg-emerald px-4 py-2 text-[12px] font-medium text-emerald-foreground shadow-sm hover:-translate-y-0.5 transition-transform"
           >
             Try Demo <ArrowRight className="h-3.5 w-3.5" />
           </button>
@@ -169,7 +169,7 @@ function Landing() {
                     whileTap={{ scale: 0.96 }}
                     transition={spring}
                     className={
-                      "min-h-11 rounded-full px-5 py-2.5 text-[14px] font-medium transition-colors " +
+                      "min-h-[38px] sm:min-h-11 rounded-full px-3.5 py-1.5 sm:px-5 sm:py-2.5 text-[12px] sm:text-[14px] font-medium transition-colors " +
                       (active
                         ? "bg-emerald text-emerald-foreground shadow-[0_10px_28px_-14px_rgba(22,52,43,0.55)]"
                         : "border border-foreground/15 bg-background/70 text-foreground/85 backdrop-blur-sm hover:border-foreground/40")
@@ -186,18 +186,18 @@ function Landing() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ ...spring, delay: 0.42 }}
-            className="mt-10 flex items-center gap-5"
+            className="mt-10 flex items-center gap-4 sm:gap-5"
           >
             <button
               type="button"
               onClick={onStart}
-              className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-emerald px-8 py-3 text-[14px] font-medium text-emerald-foreground transition-transform hover:-translate-y-0.5"
+              className="inline-flex min-h-10 sm:min-h-12 items-center justify-center gap-2 rounded-full bg-emerald px-6 sm:px-8 py-2.5 sm:py-3 text-xs sm:text-[14px] font-medium text-emerald-foreground transition-transform hover:-translate-y-0.5"
             >
               Try the demo <ArrowRight className="h-4 w-4" />
             </button>
             <Link
               to="/app"
-              className="text-[13px] font-medium uppercase tracking-[0.18em] text-foreground/60 hover:text-foreground"
+              className="text-xs sm:text-[13px] font-medium uppercase tracking-[0.18em] text-foreground/60 hover:text-foreground"
             >
               Skip intro
             </Link>
