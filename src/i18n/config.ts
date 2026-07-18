@@ -4,6 +4,9 @@ import { initReactI18next } from "react-i18next";
 import en from "./locales/en.json";
 import hi from "./locales/hi.json";
 import hinglish from "./locales/hinglish.json";
+import pa from "./locales/pa.json";
+import bn from "./locales/bn.json";
+import ta from "./locales/ta.json";
 
 /** India-scoped: 5 real languages + Hinglish (script variant, voice → hi-IN). */
 export const SUPPORTED_LOCALES = ["en", "hi", "hinglish", "pa", "bn", "ta"] as const;
@@ -38,10 +41,9 @@ if (!i18n.isInitialized) {
       en: { translation: en },
       hi: { translation: hi },
       hinglish: { translation: hinglish },
-      // Regional locales fall back to English until translations land.
-      pa: { translation: en },
-      bn: { translation: en },
-      ta: { translation: en },
+      pa: { translation: pa },
+      bn: { translation: bn },
+      ta: { translation: ta },
     },
     lng: DEFAULT_LOCALE,
     fallbackLng: DEFAULT_LOCALE,
@@ -52,16 +54,26 @@ if (!i18n.isInitialized) {
   } as Parameters<typeof i18n.init>[0]);
 }
 
+export function getActiveLocale(lang: string | undefined): Locale {
+  if (!lang) return "en";
+  if ((SUPPORTED_LOCALES as readonly string[]).includes(lang)) {
+    return lang as Locale;
+  }
+  const base = lang.slice(0, 2);
+  if ((SUPPORTED_LOCALES as readonly string[]).includes(base)) {
+    return base as Locale;
+  }
+  return "en";
+}
+
 export function syncClientLocale() {
   if (typeof window === "undefined") return;
   const stored = window.localStorage.getItem("sathi.locale") as Locale | null;
-  const browser = window.navigator.language.slice(0, 2) as Locale;
+  const browser = window.navigator.language;
   const next =
     stored && (SUPPORTED_LOCALES as readonly string[]).includes(stored)
       ? stored
-      : (SUPPORTED_LOCALES as readonly string[]).includes(browser)
-        ? browser
-        : DEFAULT_LOCALE;
+      : getActiveLocale(browser);
   if (i18n.language !== next) void i18n.changeLanguage(next);
   document.documentElement.lang = next === "hinglish" ? "en" : next;
 }

@@ -31,7 +31,7 @@ function AppShell() {
         aria-label="Primary"
         className="fixed inset-x-0 bottom-0 z-30 border-t border-foreground/10 bg-background/95 backdrop-blur-md"
       >
-        <ul className="mx-auto flex max-w-2xl items-stretch justify-between px-2 py-2">
+        <ul className="mx-auto flex max-w-2xl items-stretch justify-between px-1.5 py-2">
           {TABS.map((t) => {
             const active =
               t.to === "/app" ? loc.pathname === "/app" : loc.pathname.startsWith(t.to);
@@ -41,12 +41,12 @@ function AppShell() {
                 <Link
                   to={t.to}
                   className={
-                    "flex min-h-[52px] flex-col items-center justify-center gap-0.5 rounded-2xl px-2 py-1 text-[10px] font-medium uppercase tracking-wider transition-colors " +
+                    "flex min-h-[52px] flex-col items-center justify-center gap-0.5 rounded-2xl px-1 sm:px-2 py-1 text-[9px] sm:text-[10px] font-medium uppercase tracking-wide sm:tracking-wider transition-colors " +
                     (active ? "text-emerald" : "text-foreground/55 hover:text-foreground")
                   }
                 >
                   <Icon className="h-5 w-5" strokeWidth={active ? 2.4 : 2} />
-                  <span>{t.label}</span>
+                  <span className="hidden min-[400px]:inline">{t.label}</span>
                 </Link>
               </li>
             );

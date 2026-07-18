@@ -10,7 +10,7 @@ import { Avatar } from "@/components/sathi/Avatar";
 import { PageTransition } from "@/components/sathi/PageTransition";
 import { CONTACTS } from "@/lib/mock";
 import { speak } from "@/lib/speech";
-import type { Locale } from "@/i18n/config";
+import { getActiveLocale, type Locale } from "@/i18n/config";
 
 type Search = { to?: string; amount?: number };
 
@@ -29,7 +29,7 @@ function SendConfirm() {
   const navigate = useNavigate();
   const contact = CONTACTS.find((c) => c.id === to);
   const name = contact?.name ?? (to?.startsWith("phone:") ? to.slice(6) : "");
-  const locale = ((i18n.language?.slice(0, 2) as Locale) ?? "en") as Locale;
+  const locale = getActiveLocale(i18n.language);
 
   useEffect(() => {
     if (!amount || !name) return;

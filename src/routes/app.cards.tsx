@@ -25,7 +25,7 @@ function Cards() {
         animate={{ y: 0, opacity: 1 }}
         transition={spring}
         className={
-          "relative mt-6 aspect-[1.6/1] w-full max-w-md overflow-hidden rounded-3xl p-6 text-white shadow-2xl " +
+          "relative mt-6 aspect-[1.6/1] w-full max-w-md overflow-hidden rounded-3xl p-5 sm:p-6 text-white shadow-2xl " +
           (card.frozen ? "grayscale" : "")
         }
         style={{
@@ -33,15 +33,15 @@ function Cards() {
         }}
       >
         <div className="flex items-center justify-between">
-          <span className="font-display text-lg font-semibold">Sathi Bank</span>
-          <span className="rounded-full bg-gold/90 px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-widest text-emerald">
+          <span className="font-display text-base sm:text-lg font-semibold">Sathi Bank</span>
+          <span className="rounded-full bg-gold/90 px-2.5 py-0.5 text-[9px] sm:text-[10px] font-bold uppercase tracking-widest text-emerald">
             {card.brand}
           </span>
         </div>
-        <p className="mt-10 font-mono text-xl tracking-[0.24em]">
+        <p className="mt-6 sm:mt-10 font-mono text-[14px] min-[360px]:text-[17px] min-[400px]:text-xl tracking-[0.10em] min-[360px]:tracking-[0.18em] min-[400px]:tracking-[0.24em] whitespace-nowrap">
           {reveal ? card.fullNumber : maskCard(card.fullNumber)}
         </p>
-        <div className="mt-6 flex items-end justify-between text-xs uppercase tracking-widest opacity-90">
+        <div className="mt-4 sm:mt-6 flex items-end justify-between text-[10px] sm:text-xs uppercase tracking-widest opacity-90">
           <div>
             <p className="opacity-60">Holder</p>
             <p className="mt-1 text-sm">{card.holder}</p>

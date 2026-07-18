@@ -4,7 +4,7 @@ import { useNavigate } from "@tanstack/react-router";
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
 
-import type { Locale } from "@/i18n/config";
+import { getActiveLocale, type Locale } from "@/i18n/config";
 import {
   LOCALE_TO_BCP47,
   getSpeechRecognitionCtor,
@@ -15,7 +15,7 @@ import { spring } from "@/lib/motion";
 
 export function MicButton() {
   const { t, i18n } = useTranslation();
-  const locale = ((i18n.language?.slice(0, 2) as Locale) ?? "en") as Locale;
+  const locale = getActiveLocale(i18n.language);
   const navigate = useNavigate();
 
   const [supported, setSupported] = useState(false);

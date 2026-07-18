@@ -65,7 +65,7 @@ function AppHome() {
           >
             {formatINR(bank.balance)}
           </motion.p>
-          <div className="mt-6 flex items-center justify-between text-xs text-white/80">
+          <div className="mt-6 flex flex-col items-start gap-2.5 min-[480px]:flex-row min-[480px]:items-center min-[480px]:justify-between text-xs text-white/80">
             <button
               type="button"
               onClick={() => setRevealAcct((v) => !v)}
@@ -95,7 +95,7 @@ function AppHome() {
         <p className="text-[11px] font-medium uppercase tracking-[0.22em] text-foreground/55">
           Quick actions
         </p>
-        <div className="mt-4 grid grid-cols-4 gap-3">
+        <div className="mt-4 grid grid-cols-4 gap-2 sm:gap-3">
           {[
             { to: "/app/send", label: "Send", Icon: Send },
             { to: "/app/receive", label: "Receive", Icon: QrCode },
@@ -105,12 +105,14 @@ function AppHome() {
             <Link
               key={to}
               to={to}
-              className="flex min-h-[92px] flex-col items-center justify-center gap-2 rounded-2xl bg-secondary p-3 text-center transition-colors hover:bg-secondary/70"
+              className="flex min-h-[84px] sm:min-h-[92px] flex-col items-center justify-center gap-1.5 sm:gap-2 rounded-2xl bg-secondary p-1.5 sm:p-3 text-center transition-colors hover:bg-secondary/70"
             >
-              <span className="grid h-10 w-10 place-items-center rounded-full bg-emerald text-emerald-foreground">
-                <Icon className="h-5 w-5" strokeWidth={2.2} />
+              <span className="grid h-9 w-9 sm:h-10 sm:w-10 place-items-center rounded-full bg-emerald text-emerald-foreground">
+                <Icon className="h-4 w-4 sm:h-5 sm:w-5" strokeWidth={2.2} />
               </span>
-              <span className="text-[13px] font-medium text-foreground">{label}</span>
+              <span className="text-[11px] sm:text-[13px] font-medium text-foreground">
+                {label}
+              </span>
             </Link>
           ))}
         </div>

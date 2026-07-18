@@ -30,8 +30,8 @@ function Receive() {
         Show this QR — anyone with a UPI app can pay you.
       </p>
 
-      <div className="mt-6 rounded-3xl bg-secondary p-6 text-center">
-        <div className="mx-auto grid h-72 w-72 place-items-center rounded-2xl bg-background p-4">
+      <div className="mt-6 rounded-3xl bg-secondary p-5 sm:p-6 text-center">
+        <div className="mx-auto grid aspect-square w-full max-w-[288px] place-items-center rounded-2xl bg-background p-4">
           {qr ? <img src={qr} alt="Your UPI QR code" className="h-full w-full" /> : null}
         </div>
         <p className="mt-5 font-display text-lg font-semibold">{bank.accountHolder}</p>

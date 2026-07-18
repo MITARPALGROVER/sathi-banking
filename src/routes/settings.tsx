@@ -5,7 +5,13 @@ import "@/i18n/config";
 import { BackButton } from "@/components/sathi/BackButton";
 import { ThemeToggle } from "@/components/sathi/ThemeToggle";
 import { PageTransition } from "@/components/sathi/PageTransition";
-import { SUPPORTED_LOCALES, LOCALE_LABELS, setLocale, type Locale } from "@/i18n/config";
+import {
+  SUPPORTED_LOCALES,
+  LOCALE_LABELS,
+  setLocale,
+  getActiveLocale,
+  type Locale,
+} from "@/i18n/config";
 import { useFontScale } from "@/lib/settings";
 
 export const Route = createFileRoute("/settings")({
@@ -16,7 +22,7 @@ export const Route = createFileRoute("/settings")({
 function Settings() {
   const { t, i18n } = useTranslation();
   const [scale, setScale] = useFontScale();
-  const current = (i18n.language?.slice(0, 2) as Locale) ?? "en";
+  const current = getActiveLocale(i18n.language);
 
   return (
     <PageTransition>

@@ -8,7 +8,7 @@ import "@/i18n/config";
 import { CONTACTS } from "@/lib/mock";
 import { speak } from "@/lib/speech";
 import { spring } from "@/lib/motion";
-import type { Locale } from "@/i18n/config";
+import { getActiveLocale, type Locale } from "@/i18n/config";
 
 type Search = { to?: string; amount?: number };
 
@@ -26,7 +26,7 @@ function Success() {
   const { to, amount } = Route.useSearch();
   const contact = CONTACTS.find((c) => c.id === to);
   const name = contact?.name ?? (to?.startsWith("phone:") ? to.slice(6) : "");
-  const locale = ((i18n.language?.slice(0, 2) as Locale) ?? "en") as Locale;
+  const locale = getActiveLocale(i18n.language);
   const reduce = useReducedMotion();
 
   useEffect(() => {
